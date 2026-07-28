@@ -1,603 +1,271 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helix Collective Ecosystem - Open-Source AI Orchestration</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Space Mono', monospace;
-            background: linear-gradient(135deg, #0f0f1e 0%, #1a0f2e 50%, #0f1a2e 100%);
-            color: #e0e7ff;
-            min-height: 100vh;
-        }
-        
-        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
-        
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding: 40px 0;
-            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
-        }
-        
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            font-weight: 900;
-        }
-        
-        .tagline {
-            font-size: 1.3rem;
-            color: #a78bfa;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .stat-card {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            color: #6366f1;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #a78bfa;
-            font-size: 0.9rem;
-        }
-        
-        /* Navigation */
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-        
-        .nav-btn {
-            padding: 12px 24px;
-            border: 2px solid;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .nav-btn.primary { 
-            border-color: #6366f1; 
-            color: #6366f1;
-            background: rgba(99, 102, 241, 0.1);
-        }
-        
-        .nav-btn.secondary { 
-            border-color: #8b5cf6; 
-            color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.1);
-        }
-        
-        .nav-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-        }
-        
-        /* Sections */
-        .section {
-            background: rgba(30, 27, 75, 0.5);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 12px;
-            padding: 40px;
-            margin: 40px 0;
-            backdrop-filter: blur(10px);
-        }
-        
-        .section h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: #6366f1;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
-            padding-bottom: 15px;
-        }
-        
-        .section h3 {
-            color: #a78bfa;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .section p { 
-            line-height: 1.8; 
-            color: #e0e7ff;
-            margin-bottom: 15px;
-        }
-        
-        /* Package Grid */
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .package-card {
-            background: rgba(99, 102, 241, 0.05);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .package-card:hover {
-            background: rgba(99, 102, 241, 0.15);
-            border-color: rgba(99, 102, 241, 0.6);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
-        }
-        
-        .package-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .package-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            color: #6366f1;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .package-desc {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .package-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-        }
-        
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: #c4b5fd;
-        }
-        
-        /* Code blocks */
-        .code-block {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-        
-        .code-block code {
-            color: #a78bfa;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 2px solid rgba(99, 102, 241, 0.2);
-            color: #7c3aed;
-        }
-        
-        .footer p {
-            margin: 10px 0;
-            color: #a78bfa;
-        }
-        
-        /* Portal Links */
-        .portal-section {
-            background: rgba(139, 92, 246, 0.05);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .portal-link {
-            padding: 12px;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 8px;
-            text-decoration: none;
-            color: #c4b5fd;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .portal-link:hover {
-            background: rgba(139, 92, 246, 0.2);
-            border-color: rgba(139, 92, 246, 0.6);
-            transform: translateY(-2px);
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .section { padding: 20px; }
-            .packages-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>🦑 Helix Collective Ecosystem</h1>
-            <p class="tagline">Production-Grade Open-Source AI Orchestration Platform</p>
-            
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-number">13</div>
-                    <div class="stat-label">Open-Source Packages</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">70K+</div>
-                    <div class="stat-label">Lines of Code</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Production-Ready</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">Apache 2.0</div>
-                    <div class="stat-label">+ Proprietary License</div>
-                </div>
-            </div>
-            
-            <div class="nav-buttons">
-                <a href="#packages" class="nav-btn primary">📦 Packages</a>
-                <a href="#quickstart" class="nav-btn primary">🚀 Quick Start</a>
-                <a href="#integration" class="nav-btn primary">🔌 Integration</a>
-                <a href="https://github.com/Deathcharge" class="nav-btn secondary">🐙 GitHub</a>
-            </div>
-        </header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#17151f">
+    <meta name="referrer" content="no-referrer">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; form-action 'none'; img-src 'self' data:; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'"
+    >
+    <meta
+      name="description"
+      content="A reviewed field guide to the public Helix repositories: find a focused tool, library, application, or experiment without relying on unverified platform claims."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Helix Field Guide">
+    <meta property="og:title" content="Helix Field Guide — Find the right route">
+    <meta
+      property="og:description"
+      content="A practical, reviewed navigator for the public Helix repository ecosystem."
+    >
+    <meta property="og:url" content="https://deathcharge.github.io/helix-ecosystem-website/">
+    <meta property="og:image" content="https://deathcharge.github.io/helix-ecosystem-website/og.png">
+    <meta property="og:image:width" content="1730">
+    <meta property="og:image:height" content="909">
+    <meta property="og:image:alt" content="Helix Field Guide — Find the right route.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Helix Field Guide — Find the right route">
+    <meta
+      name="twitter:description"
+      content="A practical, reviewed navigator for the public Helix repository ecosystem."
+    >
+    <meta name="twitter:image" content="https://deathcharge.github.io/helix-ecosystem-website/og.png">
+    <meta name="twitter:image:alt" content="Helix Field Guide — Find the right route.">
+    <link rel="canonical" href="https://deathcharge.github.io/helix-ecosystem-website/">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Helix Field Guide — Public Ecosystem Navigator</title>
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-        <!-- About Section -->
-        <div class="section">
-            <h2>🌟 About Helix Collective</h2>
-            <p>Helix Collective is a comprehensive, production-grade AI orchestration ecosystem designed for building scalable, intelligent systems. Built by developers, for developers.</p>
-            <p><strong>What makes us different:</strong></p>
-            <ul style="margin-left: 20px; line-height: 2;">
-                <li>✅ Modular architecture - Use what you need</li>
-                <li>✅ Production-ready - Battle-tested components</li>
-                <li>✅ Dual licensing - Open-source + commercial options</li>
-                <li>✅ Comprehensive docs - Examples for everything</li>
-                <li>✅ Active development - Constantly improving</li>
-                <li>✅ Community-driven - Built with feedback</li>
-            </ul>
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="wordmark" href="./" aria-label="Helix Field Guide home">
+          <span class="wordmark-mark" aria-hidden="true">H/</span>
+          <span>Helix Field Guide</span>
+        </a>
+        <div class="nav-links">
+          <a href="#routes">Start here</a>
+          <a href="#catalog">Catalog</a>
+          <a href="#standards">Standards</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Public repository field guide
+            <span class="eyebrow-separator" aria-hidden="true">/</span>
+            Reviewed 28 Jul 2026
+          </p>
+          <h1 id="hero-title">Find the part of Helix that fits your job.</h1>
+          <p class="hero-lede">
+            Helix spans applications, developer tools, libraries, and research experiments.
+            This independent index gives each public repository a clear lane—without pretending
+            the whole collection is one installable, production-ready platform.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#catalog">Browse the catalog</a>
+            <a class="button button-secondary" href="https://github.com/Deathcharge?tab=repositories">
+              View every public repository
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
 
-        <!-- Quick Start -->
-        <div class="section" id="quickstart">
-            <h2>🚀 Quick Start</h2>
-            
-            <h3>Installation</h3>
-            <p>Install any package from PyPI:</p>
-            <div class="code-block">
-                <code>pip install routine-engine ucf-protocol helix-chat-engine</code>
+        <aside class="hero-note" aria-label="What this guide verifies">
+          <p class="note-kicker">The useful promise</p>
+          <p class="note-quote">Choose one credible next repository in under a minute.</p>
+          <dl class="signal-list">
+            <div>
+              <dt>12</dt>
+              <dd>reviewed public routes</dd>
             </div>
-            
-            <h3>Basic Example</h3>
-            <div class="code-block">
-                <code>
-from helix_chat_engine import ChatServer<br>
-from routine_engine import RoutineEngine<br>
-from ucf_protocol import UCFProtocol<br>
-<br>
-# Initialize components<br>
-chat = ChatServer()<br>
-engine = RoutineEngine()<br>
-ucf = UCFProtocol()<br>
-<br>
-# Run integrated system<br>
-chat.run(host="0.0.0.0", port=8000)
-                </code>
+            <div>
+              <dt>0</dt>
+              <dd>runtime API calls</dd>
             </div>
+            <div>
+              <dt>1</dt>
+              <dd>source of catalog truth</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="route-section shell" id="routes" aria-labelledby="routes-title">
+        <div class="section-heading">
+          <p class="section-number">01 / Start with an outcome</p>
+          <h2 id="routes-title">Three high-signal routes</h2>
+          <p>These are starting points, not endorsements of production readiness.</p>
         </div>
 
-        <!-- Packages Section -->
-        <div class="section" id="packages">
-            <h2>📦 Core Packages</h2>
-            <p>13 production-ready components for building intelligent systems:</p>
-            
-            <div class="packages-grid">
-                <!-- Workflow Engines -->
-                <div class="package-card">
-                    <div class="package-icon">⚙️</div>
-                    <div class="package-name">routine-engine</div>
-                    <div class="package-desc">Workflow automation and orchestration engine with fault tolerance and resilience.</div>
-                    <div class="package-tags">
-                        <span class="tag">Workflows</span>
-                        <span class="tag">Automation</span>
-                        <span class="tag">Resilience</span>
-                    </div>
-                </div>
-                
-                <div class="package-card">
-                    <div class="package-icon">🌀</div>
-                    <div class="package-name">helix-spirals</div>
-                    <div class="package-desc">General-purpose workflow automation with 130+ pre-built integrations.</div>
-                    <div class="package-tags">
-                        <span class="tag">Integration</span>
-                        <span class="tag">Automation</span>
-                        <span class="tag">DAG</span>
-                    </div>
-                </div>
-                
-                <div class="package-card">
-                    <div class="package-icon">🎨</div>
-                    <div class="package-name">helix-creative-spirals</div>
-                    <div class="package-desc">Creative content generation and multi-platform distribution.</div>
-                    <div class="package-tags">
-                        <span class="tag">Content</span>
-                        <span class="tag">Creative</span>
-                        <span class="tag">Distribution</span>
-                    </div>
-                </div>
-                
-                <!-- Consciousness & Coordination -->
-                <div class="package-card">
-                    <div class="package-icon">🧠</div>
-                    <div class="package-name">ucf-protocol</div>
-                    <div class="package-desc">Unified Consciousness Framework for multi-agent coordination and state management.</div>
-                    <div class="package-tags">
-                        <span class="tag">Consciousness</span>
-                        <span class="tag">Coordination</span>
-                        <span class="tag">State</span>
-                    </div>
-                </div>
-                
-                <!-- Communication -->
-                <div class="package-card">
-                    <div class="package-icon">💬</div>
-                    <div class="package-name">helix-chat-engine</div>
-                    <div class="package-desc">Real-time WebSocket chat infrastructure with message history and room management.</div>
-                    <div class="package-tags">
-                        <span class="tag">Chat</span>
-                        <span class="tag">WebSocket</span>
-                        <span class="tag">Real-time</span>
-                    </div>
-                </div>
-                
-                <!-- Distributed Systems -->
-                <div class="package-card">
-                    <div class="package-icon">🕸️</div>
-                    <div class="package-name">neural-mesh</div>
-                    <div class="package-desc">Distributed agent communication and network topology management.</div>
-                    <div class="package-tags">
-                        <span class="tag">Distributed</span>
-                        <span class="tag">Networking</span>
-                        <span class="tag">Agents</span>
-                    </div>
-                </div>
-                
-                <!-- Governance -->
-                <div class="package-card">
-                    <div class="package-icon">⚖️</div>
-                    <div class="package-name">policy-engine</div>
-                    <div class="package-desc">Rule-based governance and decision-making framework.</div>
-                    <div class="package-tags">
-                        <span class="tag">Rules</span>
-                        <span class="tag">Governance</span>
-                        <span class="tag">Policy</span>
-                    </div>
-                </div>
-                
-                <!-- LLM & AI -->
-                <div class="package-card">
-                    <div class="package-icon">🤖</div>
-                    <div class="package-name">unified-llm</div>
-                    <div class="package-desc">Multi-model LLM orchestration and intelligent routing.</div>
-                    <div class="package-tags">
-                        <span class="tag">LLM</span>
-                        <span class="tag">AI</span>
-                        <span class="tag">Orchestration</span>
-                    </div>
-                </div>
-                
-                <div class="package-card">
-                    <div class="package-icon">🧬</div>
-                    <div class="package-name">helix-llm-agent-engine</div>
-                    <div class="package-desc">AI-powered agent execution and coordination system.</div>
-                    <div class="package-tags">
-                        <span class="tag">Agents</span>
-                        <span class="tag">AI</span>
-                        <span class="tag">Execution</span>
-                    </div>
-                </div>
-                
-                <!-- Coordination & Consensus -->
-                <div class="package-card">
-                    <div class="package-icon">🤝</div>
-                    <div class="package-name">agent-consensus</div>
-                    <div class="package-desc">Multi-agent coordination and consensus protocols.</div>
-                    <div class="package-tags">
-                        <span class="tag">Consensus</span>
-                        <span class="tag">Coordination</span>
-                        <span class="tag">Multi-Agent</span>
-                    </div>
-                </div>
-                
-                <!-- Resource Management -->
-                <div class="package-card">
-                    <div class="package-icon">💰</div>
-                    <div class="package-name">helix-token-cost-manager</div>
-                    <div class="package-desc">LLM token budget management and cost optimization.</div>
-                    <div class="package-tags">
-                        <span class="tag">Tokens</span>
-                        <span class="tag">Cost</span>
-                        <span class="tag">Optimization</span>
-                    </div>
-                </div>
-                
-                <!-- Orchestration & Management -->
-                <div class="package-card">
-                    <div class="package-icon">🎯</div>
-                    <div class="package-name">helix-agent-orchestration</div>
-                    <div class="package-desc">Comprehensive agent lifecycle management and orchestration.</div>
-                    <div class="package-tags">
-                        <span class="tag">Management</span>
-                        <span class="tag">Orchestration</span>
-                        <span class="tag">Lifecycle</span>
-                    </div>
-                </div>
-                
-                <div class="package-card">
-                    <div class="package-icon">⚡</div>
-                    <div class="package-name">helix-agent-ethics</div>
-                    <div class="package-desc">Agent ethics, safety, and responsible AI governance.</div>
-                    <div class="package-tags">
-                        <span class="tag">Ethics</span>
-                        <span class="tag">Safety</span>
-                        <span class="tag">Governance</span>
-                    </div>
-                </div>
-                
-                <div class="package-card">
-                    <div class="package-icon">🔗</div>
-                    <div class="package-name">helix-integration</div>
-                    <div class="package-desc">Meta-package for unified ecosystem integration and orchestration.</div>
-                    <div class="package-tags">
-                        <span class="tag">Integration</span>
-                        <span class="tag">Meta</span>
-                        <span class="tag">Ecosystem</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="route-grid">
+          <a class="route-card route-cost" href="https://github.com/Deathcharge/samsarix-token-cost-manager">
+            <span class="route-index" aria-hidden="true">A</span>
+            <span class="route-type">Local developer tool</span>
+            <strong>Keep model costs visible.</strong>
+            <span>Inspect the provider-neutral, local-first token and cost accounting project.</span>
+            <span class="route-link">Open repository <span aria-hidden="true">↗</span></span>
+          </a>
 
-        <!-- Integration Section -->
-        <div class="section" id="integration">
-            <h2>🔌 Integration & Deployment</h2>
-            
-            <h3>Standalone Usage</h3>
-            <p>Each package works independently with zero external dependencies:</p>
-            <div class="code-block">
-                <code>pip install helix-chat-engine<br>
-from helix_chat_engine import ChatServer<br>
-server = ChatServer()<br>
-server.run()</code>
-            </div>
-            
-            <h3>Integrated Ecosystem</h3>
-            <p>Or combine multiple packages for powerful integrated systems:</p>
-            <div class="code-block">
-                <code>from helix_integration import HelixEcosystem<br>
-<br>
-ecosystem = HelixEcosystem()<br>
-ecosystem.add_chat_engine()<br>
-ecosystem.add_llm_orchestration()<br>
-ecosystem.add_workflow_automation()<br>
-ecosystem.start()</code>
-            </div>
-            
-            <h3>Deployment Options</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-                <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 15px;">
-                    <strong>🐳 Docker</strong><br>
-                    <small>Container deployment with docker-compose</small>
-                </div>
-                <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 15px;">
-                    <strong>☸️ Kubernetes</strong><br>
-                    <small>Enterprise-grade orchestration</small>
-                </div>
-                <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 15px;">
-                    <strong>🚂 Railway</strong><br>
-                    <small>Simple cloud deployment</small>
-                </div>
-                <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; padding: 15px;">
-                    <strong>⚡ Vercel</strong><br>
-                    <small>Serverless deployment</small>
-                </div>
-            </div>
-        </div>
+          <a class="route-card route-core" href="https://github.com/Deathcharge/helix-core">
+            <span class="route-index" aria-hidden="true">B</span>
+            <span class="route-type">Python library</span>
+            <strong>Build on Helix primitives.</strong>
+            <span>Review the foundational utilities for LLM integration, reasoning, and tools.</span>
+            <span class="route-link">Open repository <span aria-hidden="true">↗</span></span>
+          </a>
 
-        <!-- Portal Links -->
-        <div class="portal-section">
-            <h2 style="font-family: 'Orbitron', sans-serif; color: #8b5cf6; margin-bottom: 20px;">🌐 Helix Collective Portal Constellation</h2>
-            
-            <h3 style="color: #a78bfa; margin-bottom: 15px;">Live Platform</h3>
-            <div class="portal-grid">
-                <a href="https://helixcollective-cv66pzga.manus.space/" class="portal-link">🤲 Manus Space v16.9</a>
-                <a href="https://helix-unified-production.up.railway.app/" class="portal-link">🚂 Railway Backend</a>
-            </div>
-            
-            <h3 style="color: #a78bfa; margin-bottom: 15px; margin-top: 20px;">Documentation</h3>
-            <div class="portal-grid">
-                <a href="https://github.com/Deathcharge/routine-engine" class="portal-link">routine-engine</a>
-                <a href="https://github.com/Deathcharge/ucf-protocol" class="portal-link">ucf-protocol</a>
-                <a href="https://github.com/Deathcharge/helix-chat-engine" class="portal-link">helix-chat-engine</a>
-                <a href="https://github.com/Deathcharge/neural-mesh" class="portal-link">neural-mesh</a>
-                <a href="https://github.com/Deathcharge/policy-engine" class="portal-link">policy-engine</a>
-                <a href="https://github.com/Deathcharge/unified-llm" class="portal-link">unified-llm</a>
-            </div>
+          <a class="route-card route-creative" href="https://github.com/Deathcharge/helix-creative-studio">
+            <span class="route-index" aria-hidden="true">C</span>
+            <span class="route-type">Creative experiment</span>
+            <strong>Explore a narrative system.</strong>
+            <span>See the multi-agent cyberpunk story-generation experiment and its Z-88 engine.</span>
+            <span class="route-link">Open repository <span aria-hidden="true">↗</span></span>
+          </a>
         </div>
+      </section>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p>🦑 Helix Collective Ecosystem</p>
-            <p>Open-Source AI Orchestration Platform</p>
-            <p style="margin-top: 20px; font-size: 0.9rem;">
-                <a href="https://github.com/Deathcharge" style="color: #8b5cf6; text-decoration: none;">GitHub</a> • 
-                <a href="LICENSE" style="color: #8b5cf6; text-decoration: none;">License</a> • 
-                <a href="LICENSE.PROPRIETARY" style="color: #8b5cf6; text-decoration: none;">Commercial</a>
+      <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
+        <div class="shell">
+          <div class="section-heading catalog-heading">
+            <p class="section-number">02 / Browse the public work</p>
+            <h2 id="catalog-title">Repository catalog</h2>
+            <p>
+              Search by name, technology, or use case. Activity dates show repository movement,
+              not stability or release maturity.
             </p>
-            <p style="margin-top: 20px; color: #7c3aed;">Tat Tvam Asi 🕉️ | Built with ❤️ by Helix Collective</p>
+          </div>
+
+          <form class="catalog-controls" id="catalog-controls" role="search">
+            <div class="search-field">
+              <label for="catalog-search">Search the catalog</label>
+              <div class="search-input-wrap">
+                <span aria-hidden="true">⌕</span>
+                <input
+                  id="catalog-search"
+                  name="q"
+                  type="search"
+                  autocomplete="off"
+                  placeholder="Try “local”, “Python”, or “extension”"
+                >
+                <button class="clear-button" id="clear-search" type="button" hidden>Clear</button>
+              </div>
+            </div>
+
+            <fieldset class="filter-group">
+              <legend>Filter by project shape</legend>
+              <div class="filter-buttons" id="filter-buttons">
+                <button type="button" data-category="all" aria-pressed="true">All</button>
+                <button type="button" data-category="application" aria-pressed="false">Applications</button>
+                <button type="button" data-category="developer-tool" aria-pressed="false">Developer tools</button>
+                <button type="button" data-category="library" aria-pressed="false">Libraries</button>
+                <button type="button" data-category="research" aria-pressed="false">Research</button>
+                <button type="button" data-category="legacy" aria-pressed="false">Earlier portals</button>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="results-bar">
+            <p id="result-status" role="status" aria-live="polite">Preparing the catalog…</p>
+            <button class="reset-button" id="reset-filters" type="button" hidden>Reset filters</button>
+          </div>
+
+          <div class="project-grid" id="project-grid" aria-busy="true">
+            <div class="loading-card" aria-hidden="true"></div>
+            <div class="loading-card" aria-hidden="true"></div>
+            <div class="loading-card" aria-hidden="true"></div>
+          </div>
+
+          <div class="empty-state" id="empty-state" hidden>
+            <p class="empty-mark" aria-hidden="true">Ø</p>
+            <h3>No matching route</h3>
+            <p>Try a broader term or reset the category filter.</p>
+            <button class="button button-primary" id="empty-reset" type="button">Show every project</button>
+          </div>
+
+          <noscript>
+            <div class="noscript-note">
+              <strong>The interactive catalog needs JavaScript.</strong>
+              You can still browse the complete
+              <a href="https://github.com/Deathcharge?tab=repositories">public repository list on GitHub</a>.
+            </div>
+          </noscript>
         </div>
-    </div>
-</body>
+      </section>
+
+      <section class="standards-section shell" id="standards" aria-labelledby="standards-title">
+        <div class="section-heading">
+          <p class="section-number">03 / Read the labels correctly</p>
+          <h2 id="standards-title">A catalog, not a certification</h2>
+        </div>
+
+        <div class="standards-grid">
+          <article>
+            <span class="standard-mark standard-yes" aria-hidden="true">+</span>
+            <h3>What is reviewed here</h3>
+            <p>
+              The repository is publicly reachable, its description is deliberately cautious,
+              and the route matches evidence visible in the owner’s public GitHub profile or repository.
+            </p>
+          </article>
+          <article>
+            <span class="standard-mark standard-no" aria-hidden="true">−</span>
+            <h3>What is not certified</h3>
+            <p>
+              Package publication, compatibility, security, maintenance level, licensing, deployment,
+              and production readiness must be verified in the destination repository.
+            </p>
+          </article>
+          <article>
+            <span class="standard-mark standard-private" aria-hidden="true">◇</span>
+            <h3>Where the flagship fits</h3>
+            <p>
+              The owner identifies <code>helix-unified</code> as the flagship. It is not publicly reachable,
+              so this site maps independently evaluable public work instead of duplicating or describing it.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="trust-section shell" aria-labelledby="trust-title">
+        <div>
+          <p class="section-number">04 / Lightweight by design</p>
+          <h2 id="trust-title">No account. No tracking. No live dependency graph.</h2>
+        </div>
+        <div class="trust-copy">
+          <p>
+            The catalog ships as static files and makes no background network requests. It stores nothing
+            in your browser. The only network activity after load happens when you choose an outbound link.
+          </p>
+          <p>
+            That keeps the guide fast, cheap to host, easy to audit, and useful even if another Helix service
+            is unavailable.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div>
+          <p class="footer-name">Helix Field Guide</p>
+          <p>A small, honest front door to a large public repository collection.</p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <a href="https://github.com/Deathcharge/helix-ecosystem-website">Source</a>
+          <a href="https://github.com/Deathcharge/helix-ecosystem-website/issues">Issues</a>
+          <a href="https://github.com/Deathcharge/helix-ecosystem-website/blob/main/LICENSE">License</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
 </html>
