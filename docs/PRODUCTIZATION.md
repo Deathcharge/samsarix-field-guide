@@ -4,7 +4,7 @@ Review date: July 28, 2026
 
 Company steward: Samsarix LLC
 
-Repository: `Deathcharge/helix-ecosystem-website`
+Repository: `Deathcharge/samsarix-field-guide`
 
 Canonical deployment: <https://deathcharge.github.io/helix-ecosystem-website/>
 
