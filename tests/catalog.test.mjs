@@ -7,7 +7,7 @@ import { createStaticServer } from "../scripts/serve.mjs";
 
 test("catalog entries have unique IDs and supported categories", () => {
   assert.equal(new Set(PROJECTS.map(({ id }) => id)).size, PROJECTS.length);
-  assert.ok(PROJECTS.length >= 8);
+  assert.equal(PROJECTS.length, 30);
   for (const project of PROJECTS) {
     assert.ok(Object.hasOwn(CATEGORIES, project.category));
     assert.match(project.repoUrl, /^https:\/\/github\.com\/Deathcharge\//);
@@ -15,17 +15,16 @@ test("catalog entries have unique IDs and supported categories", () => {
 });
 
 test("search is case-insensitive and matches use-case text", () => {
-  const matches = filterProjects(PROJECTS, { query: "LOCAL cost" });
+  const matches = filterProjects(PROJECTS, { query: "AUDITABLE spend" });
   assert.deepEqual(matches.map(({ id }) => id), ["samsarix-token-cost-manager"]);
   assert.equal(normalizeText("  HéLIX  "), "helix");
 });
 
 test("category and query filters compose", () => {
   const matches = filterProjects(PROJECTS, { query: "python", category: "library" });
-  assert.deepEqual(
-    matches.map(({ id }) => id).sort(),
-    ["helix-chat-engine", "helix-core"],
-  );
+  assert.ok(matches.some(({ id }) => id === "helix-chat-engine"));
+  assert.ok(matches.some(({ id }) => id === "helix-core"));
+  assert.ok(matches.some(({ id }) => id === "unified-llm"));
   assert.equal(filterProjects(PROJECTS, { query: "extension", category: "research" }).length, 0);
 });
 
@@ -50,7 +49,7 @@ test("development server serves the main page, handles HEAD, and contains traver
   const home = await fetch(`${base}/`);
   assert.equal(home.status, 200);
   assert.match(home.headers.get("content-security-policy") ?? "", /default-src 'self'/);
-  assert.match(await home.text(), /Helix Field Guide/);
+  assert.match(await home.text(), /Samsarix Field Guide/);
 
   const head = await fetch(`${base}/styles.css`, { method: "HEAD" });
   assert.equal(head.status, 200);

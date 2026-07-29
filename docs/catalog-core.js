@@ -10,6 +10,7 @@ export function projectSearchText(project) {
   return normalizeText(
     [
       project.name,
+      project.productName,
       project.category,
       project.language,
       project.summary,

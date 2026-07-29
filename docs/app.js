@@ -41,7 +41,8 @@ function projectCard(project) {
   const header = element("div", "project-card-header");
   const category = element("span", "project-category", CATEGORIES[project.category]);
   const activity = element("span", "project-activity", formatActivity(project.lastActivity));
-  const title = element("h3", "project-name", project.name);
+  const title = element("h3", "project-name", project.productName);
+  const repository = element("p", "project-repository", project.name);
   const summary = element("p", "project-summary", project.summary);
   const useCase = element("p", "project-use-case", project.useCase);
   const footer = element("div", "project-card-footer");
@@ -50,14 +51,14 @@ function projectCard(project) {
 
   link.href = project.repoUrl;
   link.textContent = "Inspect repository";
-  link.setAttribute("aria-label", `Inspect ${project.name} on GitHub`);
+  link.setAttribute("aria-label", `Inspect ${project.productName} in the ${project.name} repository on GitHub`);
   const arrow = element("span", "project-link-arrow", "↗");
   arrow.setAttribute("aria-hidden", "true");
   link.append(" ", arrow);
 
   header.append(category, activity);
   footer.append(language, link);
-  article.append(header, title, summary, useCase, footer);
+  article.append(header, title, repository, summary, useCase, footer);
   return article;
 }
 

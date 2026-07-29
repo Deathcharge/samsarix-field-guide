@@ -107,7 +107,7 @@ if (isCli) {
   const port = parsePort(process.env.PORT);
   const server = createStaticServer();
   server.listen(port, "127.0.0.1", () => {
-    console.log(`Helix Field Guide is available at http://127.0.0.1:${port}`);
+    console.log(`Samsarix Field Guide is available at http://127.0.0.1:${port}`);
   });
 
   const shutdown = () => server.close(() => process.exit(0));

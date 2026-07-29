@@ -26,9 +26,7 @@ This code applies to repository issues, pull requests, discussions, reviews, and
 
 ## Reporting
 
-Do not put sensitive personal details in a public issue. Use GitHub's platform reporting tools for abuse or safety concerns. For a repository-specific private report, contact the repository owner through the contact method on the [Deathcharge GitHub profile](https://github.com/Deathcharge).
-
-The repository does not currently publish a verified project-specific private conduct address or promise a response time. Establishing that channel is an owner-controlled follow-up recorded in `docs/PRODUCTIZATION.md`.
+Do not put sensitive personal details in a public issue. Use GitHub's platform reporting tools for abuse or safety concerns. For a repository-specific private report, email [support@samsarix.com](mailto:support@samsarix.com) with the subject `Code of Conduct report`. Include only the information needed to understand and respond to the incident.
 
 Maintainers should handle reports as privately and promptly as the available channel permits, disclose conflicts of interest, and apply consequences proportionate to the behavior and its impact.
 
