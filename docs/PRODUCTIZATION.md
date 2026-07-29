@@ -10,7 +10,7 @@ Canonical deployment: <https://deathcharge.github.io/helix-ecosystem-website/>
 
 ## Release disposition
 
-**Release candidate.** The repository is a coherent standalone product: a dependency-free, searchable public portfolio guide. Local implementation, documentation, automated checks, license structure, support contacts, and publication workflow are in place. Hosted CI, pull-request review, merge, and post-deployment smoke testing are the remaining production gates.
+**Release candidate.** The repository is a coherent standalone product: a dependency-free, searchable public portfolio guide. Local implementation, documentation, automated checks, license structure, support contacts, publication workflow, branch publication, and hosted CI are in place. Pull-request review, merge, and post-deployment smoke testing are the remaining production gates.
 
 ## Evidence reviewed
 
@@ -117,7 +117,7 @@ This is a practical repository default, not legal advice. Counsel should review 
 - [x] Claims are limited to reviewed evidence and clearly scoped.
 - [x] CI runs the same meaningful check as local development.
 - [x] MPL-2.0, copyright notice, trademark policy, and working contact paths are present.
-- [ ] GitHub-hosted CI passes on the pushed branch.
+- [x] GitHub-hosted CI passes on the pushed branch.
 - [ ] A draft pull request is reviewed and merged.
 - [ ] The published site and social asset are smoke-tested after deployment.
 - [ ] Counsel reviews ownership and trademark policy before formal enforcement or commercial dual licensing.
@@ -142,5 +142,5 @@ This is a practical repository default, not legal advice. Counsel should review 
 | Outbound route audit | Passed; all 30 catalog repository URLs returned HTTP 200 on July 28, 2026. |
 | Social asset | Inspected at 1731×909; approved text is “SAMSARIX FIELD GUIDE” and “Find the right route.” |
 | `git diff --check` | Passed after the final implementation review. |
-| GitHub-hosted CI | Pending branch publication. |
+| GitHub-hosted CI | Passed on draft pull request #1 after branch publication. |
 | Production Pages smoke test | Pending merge to the configured publishing branch. |
