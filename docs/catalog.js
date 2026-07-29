@@ -243,10 +243,10 @@ export const PROJECTS = Object.freeze([
     featured: false,
   },
   {
-    id: "helix-hub-shared",
-    name: "helix-hub-shared",
+    id: "samsarix-agent-engine",
+    name: "samsarix-agent-engine",
     productName: "Samsarix Agent Engine",
-    repoUrl: "https://github.com/Deathcharge/helix-hub-shared",
+    repoUrl: "https://github.com/Deathcharge/samsarix-agent-engine",
     category: "library",
     language: "Python",
     summary: "A small SDK and CLI for named, stateful prompt agents using an OpenAI-compatible chat endpoint.",

@@ -8,7 +8,7 @@ import { createStaticServer } from "../scripts/serve.mjs";
 const EXPECTED_PUBLIC_REPOSITORIES = [
   "agent-consensus",
   "Helix",
-  "helix-hub-shared",
+  "samsarix-agent-engine",
   "Helix-Unified-Hub",
   "neural-mesh",
   "policy-engine",
