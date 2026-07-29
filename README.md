@@ -1,93 +1,116 @@
-# helix-ecosystem-website
+# Samsarix Field Guide
 
-Ecosystem website
+Samsarix Field Guide is a small, static navigator for the 30 public repositories stewarded by Samsarix LLC. It helps developers find a focused application, developer tool, library, service, research project, or earlier portal without presenting the portfolio as one installable platform.
 
-## 🎯 Overview
+Some GitHub repository addresses still contain the former **Helix** brand. Those names are retained as stable URLs and project history; **Samsarix** is the current company and product-family brand. Every destination remains independently responsible for its installation, tests, releases, licensing, and documentation.
 
-This repository is part of the [Helix Collective](https://github.com/Deathcharge/helix-platform), a comprehensive ecosystem for building intelligent, multi-agent systems with consciousness frameworks and advanced LLM integration.
+**Current maturity:** release candidate. The site, checks, tests, build, catalog audit, license, contact paths, and publishing branch are ready for review. The live GitHub Pages site updates when this branch is merged into the configured publishing source.
 
-## 🚀 Quick Start
+## Who it is for
 
-### Installation
+- Developers discovering the Samsarix portfolio for the first time.
+- Contributors deciding which public repository matches a specific job.
+- Maintainers who need one cautious, maintainable inventory instead of cross-repository marketing claims.
 
-\`\`\`bash
+The primary journey is simple: choose an outcome or search/filter the catalog, read the evidence boundary, and open one relevant repository.
+
+## Quick start
+
+Prerequisites:
+
+- Git
+- Node.js 20 or newer (Node.js 24 is used in CI)
+- npm 10 or newer
+
+```bash
 git clone https://github.com/Deathcharge/helix-ecosystem-website.git
 cd helix-ecosystem-website
-pip install -r requirements.txt
-\`\`\`
+npm ci
+npm start
+```
 
-### Basic Usage
+Open <http://127.0.0.1:4173>.
 
-See the [examples/](examples/) directory for working examples and integration patterns.
+No runtime credentials, environment variables, databases, private repositories, hosted APIs, analytics, or external fonts are required.
 
-## 📚 Documentation
+## What the site does
 
-- **[Architecture](docs/ARCHITECTURE.md)** - System design and components
-- **[API Reference](docs/API.md)** - Complete API documentation
-- **[Integration Guide](docs/INTEGRATION.md)** - How to integrate with other Helix repos
-- **[Deployment](docs/DEPLOYMENT.md)** - Production deployment guide
-- **[Contributing](CONTRIBUTING.md)** - How to contribute
+- Maps all 30 repositories visible on the owner's public GitHub profile at the July 28, 2026 review.
+- Shows current product labels alongside stable repository addresses.
+- Provides three high-signal starting routes.
+- Searches product names, repository names, technologies, descriptions, and use cases.
+- Filters by project shape and handles loading, zero-result, script-error, no-JavaScript, and not-found states.
+- Uses a reviewed static snapshot instead of making GitHub API calls from a visitor's browser.
 
-## 🔗 Related Repositories
+Activity dates indicate public repository movement only. They do not certify maintenance, security, package availability, compatibility, licensing, or production readiness.
 
-- **[helix-platform](https://github.com/Deathcharge/helix-platform)** - Central hub and integration guide
-- **[helix-unified](https://github.com/Deathcharge/helix-unified)** - Main unified codebase
-- **[helix-core](https://github.com/Deathcharge/helix-core)** - Core utilities and LLM integration
+## Development commands
 
-See [HELIX_REPOSITORY_INDEX.md](https://github.com/Deathcharge/helix-platform/blob/main/HELIX_REPOSITORY_INDEX.md) for the complete ecosystem map.
+```bash
+npm start       # serve docs/ at http://127.0.0.1:4173
+npm run lint    # syntax, formatting, metadata, asset, and catalog checks
+npm test        # catalog behavior and local-server integration tests
+npm run build   # validate and copy the deployable site to dist/
+npm run check   # run the complete release check used by CI
+```
 
-## 🧪 Testing
+There is no separate type-check command: the product uses standards-based HTML, CSS, and JavaScript without TypeScript or a compile step. JavaScript syntax is checked during `npm run lint`.
 
-Run tests with pytest:
+## Updating the catalog
 
-\`\`\`bash
-pytest tests/ -v --cov=src
-\`\`\`
+Catalog records live in [`docs/catalog.js`](docs/catalog.js). Each record must:
 
-## 🔄 CI/CD
+1. Link directly to a public repository owned by `Deathcharge`.
+2. Show the current reviewed product name and the literal repository address.
+3. Use a cautious summary supported by the repository or its available sibling checkout.
+4. Explain the narrow reason someone would inspect it.
+5. Treat activity as metadata rather than a maturity claim.
+6. Pass `npm run check`.
 
-This repository uses GitHub Actions for:
-- ✅ Automated testing (Python 3.9, 3.10, 3.11)
-- ✅ Code linting (flake8)
-- ✅ Type checking (mypy)
-- ✅ Security scanning (bandit, safety)
-- ✅ Coverage reporting (Codecov)
+Each destination repository owns its setup, release, security, and license claims. This guide is a map, not a cross-repository dependency or certification system.
 
-See [.github/workflows/ci.yml](.github/workflows/ci.yml) for details.
+## Architecture
 
-## 📋 Requirements
+```text
+docs/index.html       semantic page shell and static fallback
+docs/styles.css       responsive visual system
+docs/catalog.js       reviewed repository records
+docs/catalog-core.js  pure search, filter, and sort behavior
+docs/app.js           accessible DOM rendering and URL state
+scripts/              zero-dependency lint, build, and local server
+tests/                catalog and server integration coverage
+```
 
-- Python 3.9+
-- Dependencies listed in requirements.txt
-- Development dependencies in requirements-dev.txt
+The deployable source is `docs/`, matching the repository's GitHub Pages setup. `npm run build` creates a disposable `dist/` copy for release verification; generated output is not committed.
 
-## 🤝 Contributing
+## Deployment
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for:
-- Development setup
-- Code style guide
-- Testing requirements
-- Pull request process
+GitHub Pages publishes the site from the repository's configured branch and `docs/` directory:
 
-## 📄 License
+<https://deathcharge.github.io/helix-ecosystem-website/>
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+CI verifies changes but does not own deployment credentials or Pages settings. After a merge to the publishing branch, verify the page, social image, search, filters, and representative outbound links.
 
-## 🆘 Support
+## Security and privacy
 
-- **Issues**: Report bugs or request features via [GitHub Issues](https://github.com/Deathcharge/helix-ecosystem-website/issues)
-- **Discussions**: Ask questions in [GitHub Discussions](https://github.com/Deathcharge/helix-ecosystem-website/discussions)
-- **Documentation**: See the [docs/](docs/) directory
-- **Ecosystem**: Visit [helix-platform](https://github.com/Deathcharge/helix-platform)
+- No authentication, forms, cookies, analytics, browser storage, or visitor-data collection.
+- Catalog values are rendered with DOM text nodes rather than HTML injection.
+- The page declares restrictive Content Security Policy and referrer metadata.
+- The development server constrains paths to `docs/`, supports only `GET` and `HEAD`, and returns defensive headers.
+- The primary journey requires no external service or private Samsarix repository.
 
-## 🎓 Learn More
+See [`SECURITY.md`](SECURITY.md) for private vulnerability reporting. General inquiries go to [contact@samsarix.com](mailto:contact@samsarix.com); product support goes to [support@samsarix.com](mailto:support@samsarix.com).
 
-- [Helix Collective Repository Index](https://github.com/Deathcharge/helix-platform/blob/main/HELIX_REPOSITORY_INDEX.md)
-- [Architecture Guide](https://github.com/Deathcharge/helix-platform/blob/main/docs/ARCHITECTURE.md)
-- [Integration Examples](https://github.com/Deathcharge/helix-platform/tree/main/examples)
+## Licensing and brand
 
----
+The source and site content in this repository are licensed under the [Mozilla Public License 2.0](LICENSE), with copyright and attribution recorded in [`NOTICE`](NOTICE). MPL-2.0 uses file-level copyleft: distributed modifications to covered files remain available under the same license, while larger works may use other terms.
 
-**Status**: ✅ Production Ready  
-**Last Updated**: June 19, 2026  
-**Maintainer**: Helix Collective Contributors
+The license does not grant rights to Samsarix names, logos, or branding. See [`TRADEMARKS.md`](TRADEMARKS.md) for the separate brand policy. Linked repositories retain their own license terms.
+
+This structure is intended to keep the public work reusable, credited, and protected without claiming ownership of third-party contributions. It is not legal advice; Samsarix LLC should have counsel review the policy before relying on it for a high-stakes commercial licensing program.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the repository workflow and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) for community expectations. Product decisions and release evidence are recorded in [`docs/PRODUCTIZATION.md`](docs/PRODUCTIZATION.md).
+
+Copyright © 2026 Samsarix LLC.
