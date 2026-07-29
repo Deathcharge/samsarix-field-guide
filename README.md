@@ -23,7 +23,7 @@ Prerequisites:
 - npm 10 or newer
 
 ```bash
-git clone https://github.com/Deathcharge/helix-ecosystem-website.git
+git clone https://github.com/Deathcharge/samsarix-field-guide.git
 cd helix-ecosystem-website
 npm ci
 npm start
