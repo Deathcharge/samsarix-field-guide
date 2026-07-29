@@ -7,14 +7,14 @@ This roadmap separates four gates: merge, release, publication, and flagship ado
 Portfolio role: **flagship companion**. Treat this as a thin companion to Samsarix Unified. The flagship remains canonical for account, social, realm, billing, and durable user-data behavior.
 Planned repository identity: `Deathcharge/samsarix-field-guide` (ready).
 
-Current disposition: Merge the productization branch after exact-head verification and rollback-ref creation; release and adoption remain separate decisions.
+Current disposition: Productization and repository-coordinate updates are merged. This branch makes Field Guide the canonical public portfolio map and consolidates the useful evaluation/lifecycle guidance without copying incompatible source trees. Release and flagship adoption remain separate decisions.
 
 ## Stabilize the productized default
 
 - Keep the default branch buildable from a clean checkout and preserve exact-head CI evidence.
 - Keep Samsarix LLC branding, package identity, license metadata, and compatibility aliases internally consistent.
 - Preserve the pre-productization default under a rollback ref before merging; do not delete legacy history.
-- Review priority: Reconcile 30 catalog rows to final audit.
+- Review priority: Keep all 30 catalog rows aligned with the live public inventory through `npm run audit:catalog`.
 - Review priority: approve brand/MPL.
 - Review priority: green CI.
 - Review priority: merge.
@@ -28,10 +28,10 @@ Current disposition: Merge the productization branch after exact-head verificati
 
 Current hardening backlog:
 
-- Catalog data is a dated manual snapshot; activity and product labels will drift across 30 repositories.
-- No automated comparison with the public GitHub repository list or outbound-link health check.
+- Catalog descriptions and activity remain a dated snapshot even though repository-name drift now has a live read-only audit command.
+- No automated content-maturity or outbound-service health certification; those remain destination-owned checks.
 - Hosted/visual/accessibility claims were not independently tested in this audit.
-- Branding and role relative to a future flagship/company website need an owner decision.
+- A future company/flagship site may link to or replace this route, but this repository is the canonical public portfolio map until that migration is explicit.
 - The 1.88 MB social image is larger than necessary for a small static site.
 - License transition and content ownership need approval.
 

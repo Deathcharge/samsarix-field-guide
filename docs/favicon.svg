@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Samsarix</title>
+  <rect width="64" height="64" rx="16" fill="#17151f"/>
+  <path d="M16 18h26v8H24v5h13c7 0 11 4 11 11s-5 12-13 12H16v-8h19c3 0 5-1 5-4 0-2-2-3-5-3H16V18Z" fill="#c9f45a"/>
+  <path d="m44 13 6 2-13 36-6-2 13-36Z" fill="#ff8066"/>
+</svg>

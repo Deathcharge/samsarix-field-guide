@@ -21,8 +21,8 @@
       property="og:description"
       content="A practical, reviewed navigator for the public Samsarix and Helix-era repository portfolio."
     >
-    <meta property="og:url" content="https://deathcharge.github.io/helix-ecosystem-website/">
-    <meta property="og:image" content="https://deathcharge.github.io/helix-ecosystem-website/og.png">
+    <meta property="og:url" content="https://deathcharge.github.io/samsarix-field-guide/">
+    <meta property="og:image" content="https://deathcharge.github.io/samsarix-field-guide/og.png">
     <meta property="og:image:width" content="1731">
     <meta property="og:image:height" content="909">
     <meta property="og:image:alt" content="Samsarix Field Guide — Find the right route.">
@@ -32,9 +32,10 @@
       name="twitter:description"
       content="A practical, reviewed navigator for the public Samsarix and Helix-era repository portfolio."
     >
-    <meta name="twitter:image" content="https://deathcharge.github.io/helix-ecosystem-website/og.png">
+    <meta name="twitter:image" content="https://deathcharge.github.io/samsarix-field-guide/og.png">
     <meta name="twitter:image:alt" content="Samsarix Field Guide — Find the right route.">
-    <link rel="canonical" href="https://deathcharge.github.io/helix-ecosystem-website/">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://deathcharge.github.io/samsarix-field-guide/">
     <link rel="stylesheet" href="./styles.css">
     <title>Samsarix Field Guide — Public Repository Navigator</title>
     <script type="module" src="./app.js"></script>
@@ -52,6 +53,7 @@
           <a href="#routes">Start here</a>
           <a href="#catalog">Catalog</a>
           <a href="#standards">Standards</a>
+          <a href="./portfolio-boundaries.html">Boundaries</a>
         </div>
       </nav>
     </header>
@@ -63,7 +65,7 @@
             <span class="status-dot" aria-hidden="true"></span>
             Public repository field guide
             <span class="eyebrow-separator" aria-hidden="true">/</span>
-            Reviewed 28 Jul 2026
+            Reviewed 29 Jul 2026
           </p>
           <h1 id="hero-title">Find the Samsarix project that fits your job.</h1>
           <p class="hero-lede">
@@ -116,7 +118,7 @@
             <span class="route-link">Open repository <span aria-hidden="true">↗</span></span>
           </a>
 
-          <a class="route-card route-core" href="https://github.com/Deathcharge/helix-integration">
+          <a class="route-card route-core" href="https://github.com/Deathcharge/samsarix-integration-guard">
             <span class="route-index" aria-hidden="true">B</span>
             <span class="route-type">Python library</span>
             <strong>Check data before it leaves.</strong>
@@ -141,7 +143,7 @@
             <h2 id="catalog-title">Repository catalog</h2>
             <p>
               Search by product, repository address, technology, or use case. Cards show current
-              product names alongside stable repository addresses, including Helix-era URLs.
+              product names alongside current repository addresses; the remaining Helix-era URLs are explicit lifecycle holds.
             </p>
           </div>
 
@@ -229,8 +231,8 @@
             <span class="standard-mark standard-private" aria-hidden="true">◇</span>
             <h3>Why some URLs still say Helix</h3>
             <p>
-              Samsarix is the current company brand. Existing Helix-era repository names remain visible
-              as stable addresses and project history; private flagship work is not treated as a public route.
+              Samsarix is the current company brand. The few remaining Helix-era repository names are
+              explicit historical or consolidation holds; private flagship work is not treated as a public route.
             </p>
           </article>
         </div>
@@ -252,6 +254,21 @@
           </p>
         </div>
       </section>
+
+      <section class="boundary-cta shell" aria-labelledby="boundary-cta-title">
+        <div>
+          <p class="section-number">05 / Understand the boundaries</p>
+          <h2 id="boundary-cta-title">One portfolio does not mean one runtime.</h2>
+        </div>
+        <div class="trust-copy">
+          <p>
+            The Field Guide is now the canonical public map. It preserves the strongest evaluation
+            guidance from the earlier Project Guide and lifecycle context from the Hub Directory
+            without copying their runtimes, historical exports, or license-restricted artifacts.
+          </p>
+          <a class="button button-secondary" href="./portfolio-boundaries.html">Read the architecture and lifecycle guide</a>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -261,6 +278,7 @@
           <p>Maintained by Samsarix LLC. A small, honest front door to an independently useful public portfolio.</p>
         </div>
         <nav aria-label="Footer navigation">
+          <a href="./portfolio-boundaries.html">Portfolio boundaries</a>
           <a href="https://github.com/Deathcharge/samsarix-field-guide">Source</a>
           <a href="https://github.com/Deathcharge/samsarix-field-guide/issues">Issues</a>
           <a href="mailto:contact@samsarix.com">Contact</a>

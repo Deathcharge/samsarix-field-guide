@@ -11,8 +11,8 @@ For catalog changes, treat a repository's public page and reviewed checkout as e
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/helix-ecosystem-website.git
-cd helix-ecosystem-website
+git clone https://github.com/YOUR_USERNAME/samsarix-field-guide.git
+cd samsarix-field-guide
 npm ci
 npm run check
 ```
