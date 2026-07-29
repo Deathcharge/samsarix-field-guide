@@ -2,7 +2,7 @@
 
 Samsarix Field Guide is a small, static navigator for the 30 public repositories stewarded by Samsarix LLC. It helps developers find a focused application, developer tool, library, service, research project, or earlier portal without presenting the portfolio as one installable platform.
 
-Some GitHub repository addresses still contain the former **Helix** brand. Those names are retained as stable URLs and project history; **Samsarix** is the current company and product-family brand. Every destination remains independently responsible for its installation, tests, releases, licensing, and documentation.
+Some GitHub repository addresses still contain the former **Helix** brand because their rename or lifecycle decision is intentionally held. **Samsarix** is the current company and product-family brand. Every destination remains independently responsible for its installation, tests, releases, licensing, and documentation.
 
 **Current maturity:** release candidate. The site, checks, tests, build, catalog audit, license, contact paths, and publishing branch are ready for review. The live GitHub Pages site updates when this branch is merged into the configured publishing source.
 
@@ -24,7 +24,7 @@ Prerequisites:
 
 ```bash
 git clone https://github.com/Deathcharge/samsarix-field-guide.git
-cd helix-ecosystem-website
+cd samsarix-field-guide
 npm ci
 npm start
 ```
@@ -35,7 +35,8 @@ No runtime credentials, environment variables, databases, private repositories, 
 
 ## What the site does
 
-- Maps all 30 repositories visible on the owner's public GitHub profile at the July 28, 2026 review.
+- Maps all 30 active public repositories visible on the owner's GitHub profile at the July 29, 2026 review.
+- Preserves the useful architecture-evaluation and lifecycle guidance from the Project Guide and Hub Directory on one canonical, license-conscious boundaries page.
 - Shows current product labels alongside stable repository addresses.
 - Provides three high-signal starting routes.
 - Searches product names, repository names, technologies, descriptions, and use cases.
@@ -52,6 +53,7 @@ npm run lint    # syntax, formatting, metadata, asset, and catalog checks
 npm test        # catalog behavior and local-server integration tests
 npm run build   # validate and copy the deployable site to dist/
 npm run check   # run the complete release check used by CI
+npm run audit:catalog # compare the snapshot with the live public GitHub inventory
 ```
 
 There is no separate type-check command: the product uses standards-based HTML, CSS, and JavaScript without TypeScript or a compile step. JavaScript syntax is checked during `npm run lint`.
@@ -68,6 +70,8 @@ Catalog records live in [`docs/catalog.js`](docs/catalog.js). Each record must:
 6. Pass `npm run check`.
 
 Each destination repository owns its setup, release, security, and license claims. This guide is a map, not a cross-repository dependency or certification system.
+
+Run `npm run audit:catalog` during a portfolio refresh. It performs a read-only GitHub API comparison and fails if the active public repository names differ from the checked-in catalog; it is deliberately separate from the offline build and test gate.
 
 ## Architecture
 
@@ -87,7 +91,7 @@ The deployable source is `docs/`, matching the repository's GitHub Pages setup. 
 
 GitHub Pages publishes the site from the repository's configured branch and `docs/` directory:
 
-<https://deathcharge.github.io/helix-ecosystem-website/>
+<https://deathcharge.github.io/samsarix-field-guide/>
 
 CI verifies changes but does not own deployment credentials or Pages settings. After a merge to the publishing branch, verify the page, social image, search, filters, and representative outbound links.
 

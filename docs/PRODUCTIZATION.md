@@ -6,7 +6,7 @@ Company steward: Samsarix LLC
 
 Repository: `Deathcharge/samsarix-field-guide`
 
-Canonical deployment: <https://deathcharge.github.io/helix-ecosystem-website/>
+Canonical deployment: <https://deathcharge.github.io/samsarix-field-guide/>
 
 ## Release disposition
 
@@ -126,7 +126,7 @@ This is a practical repository default, not legal advice. Counsel should review 
 
 - Catalog facts can drift after the review date; review changes against public repositories and available checkouts.
 - Destination repositories have independent maturity and licenses; this guide does not certify them.
-- Several public URLs retain Helix-era names. Repository renames should be handled independently, with redirects and release notes, rather than forced from this index.
+- A bounded set of public URLs retain Helix-era names because their historical or consolidation decision is intentionally held. The catalog uses every completed Samsarix repository coordinate and keeps only those explicit holds.
 - GitHub Pages branch publishing cannot set every recommended HTTP response header.
 - Private flagship and company-site work can change without this public guide knowing.
 - Browser UI screenshot or assistive-technology lab testing was not requested; semantic structure, CSS behavior, pure catalog logic, and HTTP contracts are covered locally.

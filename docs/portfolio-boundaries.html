@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#17151f">
+    <meta name="referrer" content="no-referrer">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; form-action 'none'; img-src 'self' data:; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'"
+    >
+    <meta
+      name="description"
+      content="A practical map of Samsarix runtime, package, policy, effect, and lifecycle boundaries."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Samsarix Field Guide">
+    <meta property="og:title" content="Samsarix portfolio boundaries">
+    <meta
+      property="og:description"
+      content="Understand which Samsarix repository owns a runtime, reusable contract, public guide, or historical artifact."
+    >
+    <meta property="og:url" content="https://deathcharge.github.io/samsarix-field-guide/portfolio-boundaries.html">
+    <meta property="og:image" content="https://deathcharge.github.io/samsarix-field-guide/og.png">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://deathcharge.github.io/samsarix-field-guide/portfolio-boundaries.html">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Samsarix portfolio boundaries — Field Guide</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="wordmark" href="./" aria-label="Samsarix Field Guide home">
+          <span class="wordmark-mark" aria-hidden="true">S/</span>
+          <span>Samsarix Field Guide</span>
+        </a>
+        <div class="nav-links">
+          <a href="./#routes">Start here</a>
+          <a href="./#catalog">Catalog</a>
+          <a href="./#standards">Standards</a>
+          <a href="./portfolio-boundaries.html" aria-current="page">Boundaries</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" class="guide-page">
+      <section class="guide-hero shell" aria-labelledby="guide-title">
+        <div>
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Architecture and lifecycle guide
+          </p>
+          <h1 id="guide-title">Know what each layer is allowed to own.</h1>
+          <p class="hero-lede">
+            Samsarix is a portfolio, not one giant runtime. This guide separates the private
+            flagship, reusable packages, consumer-owned adapters, effect boundaries, public
+            documentation, and preserved experiments so a useful extraction does not become a
+            second source of truth.
+          </p>
+        </div>
+        <aside class="hero-note" aria-label="Boundary rule">
+          <p class="note-kicker">The decision rule</p>
+          <p class="note-quote">Adopt through a versioned public contract, never a private source import.</p>
+          <p>Reviewed 29 Jul 2026. Recheck the destination repository before adoption or release.</p>
+        </aside>
+      </section>
+
+      <section class="guide-section shell" aria-labelledby="system-map-title">
+        <div class="section-heading">
+          <p class="section-number">01 / System map</p>
+          <h2 id="system-map-title">Five boundaries keep the portfolio understandable.</h2>
+          <p>The owner of a boundary also owns its authorization, privacy, failures, and compatibility promises.</p>
+        </div>
+        <div class="boundary-grid">
+          <article class="boundary-card">
+            <span>01</span>
+            <h3>Product runtime</h3>
+            <p><code>helix-unified</code> remains the private flagship for Samsarix Social, the Realms application variant, accounts, billing, and durable user data.</p>
+          </article>
+          <article class="boundary-card">
+            <span>02</span>
+            <h3>Reusable primitive</h3>
+            <p>A focused package owns a narrow operation such as typed tool invocation, provider transport, policy evaluation, or payload redaction.</p>
+          </article>
+          <article class="boundary-card">
+            <span>03</span>
+            <h3>Consumer adapter</h3>
+            <p>The adopting application translates its own identities and data into the package contract and can remove the adapter without rewriting the package.</p>
+          </article>
+          <article class="boundary-card">
+            <span>04</span>
+            <h3>Effect boundary</h3>
+            <p>The application—not a generic agent loop—owns consequential writes, consent, idempotency, durable queues, and operator recovery.</p>
+          </article>
+          <article class="boundary-card">
+            <span>05</span>
+            <h3>Evidence boundary</h3>
+            <p>Tests, fixtures, compatibility windows, and release records support only the exact version and workflow they exercised.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="guide-section guide-section-dark" aria-labelledby="evaluation-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-number">02 / Evaluate an agent system</p>
+            <h2 id="evaluation-title">Trace one real workflow before trusting the architecture.</h2>
+            <p>This compact method preserves the strongest reusable material from the earlier private Project Guide.</p>
+          </div>
+          <ol class="sequence-list">
+            <li><strong>Input:</strong> identify who supplies the request, context, credentials, and constraints.</li>
+            <li><strong>Orchestration:</strong> find the state machine, stopping rules, retry limits, and timeout behavior.</li>
+            <li><strong>Specialist work:</strong> distinguish model suggestions from deterministic validation and application code.</li>
+            <li><strong>Policy and effects:</strong> locate the final authorization check and every external side effect.</li>
+            <li><strong>Record:</strong> verify what persists, what is redacted, who can inspect it, and how a failed run resumes.</li>
+            <li><strong>Proof:</strong> run the smallest end-to-end fixture that exercises success, denial, timeout, and rollback.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="guide-section shell" aria-labelledby="adoption-title">
+        <div class="section-heading">
+          <p class="section-number">03 / Adoption test</p>
+          <h2 id="adoption-title">Restore a removed relationship only when all five answers are yes.</h2>
+          <p>A roadmap idea or copied implementation is not evidence that a runtime dependency should return.</p>
+        </div>
+        <ol class="adoption-list">
+          <li>A real Social, Realms, companion, or standalone workflow currently needs the behavior.</li>
+          <li>The earlier behavior was functional—not mocked, copied, unavailable, or documented only.</li>
+          <li>The relationship fits a stable package, HTTP, event, schema, or immutable workflow contract.</li>
+          <li>One side explicitly owns compatibility, authorization, privacy, limits, and failure recovery.</li>
+          <li>Adoption retires or clearly subordinates a duplicate instead of creating another canonical implementation.</li>
+        </ol>
+      </section>
+
+      <section class="guide-section lifecycle-section" aria-labelledby="lifecycle-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-number">04 / Documentation lifecycle</p>
+            <h2 id="lifecycle-title">One public front door, preserved source histories.</h2>
+            <p>Consolidation changes maintenance ownership; it does not silently delete, archive, or relicense a source repository.</p>
+          </div>
+          <div class="lifecycle-table" role="list">
+            <article role="listitem">
+              <p class="lifecycle-status">Canonical</p>
+              <h3>Samsarix Field Guide</h3>
+              <p>Public repository catalog, portfolio boundaries, current Samsarix coordinates, and cautious lifecycle labels.</p>
+            </article>
+            <article role="listitem">
+              <p class="lifecycle-status">Reference source</p>
+              <h3>Project Guide</h3>
+              <p>Private case-study source. Its reusable evaluation method is represented here; its site implementation and AGPL-licensed files are not copied.</p>
+            </article>
+            <article role="listitem">
+              <p class="lifecycle-status">Preserved consolidation source</p>
+              <h3>Hub Directory</h3>
+              <p>Public index of bundled profiles and legacy concepts. Historical exports, binaries, integrations, and sensitive-history categories remain outside this site.</p>
+            </article>
+            <article role="listitem">
+              <p class="lifecycle-status">Historical hold</p>
+              <h3>Helix</h3>
+              <p>Earlier portfolio source retained for history until a separate security, licensing, and archival decision is approved.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="guide-section shell" aria-labelledby="license-title">
+        <div class="section-heading">
+          <p class="section-number">05 / License boundary</p>
+          <h2 id="license-title">Consolidate the guidance, not incompatible source trees.</h2>
+          <p>
+            This page is newly authored within the MPL-2.0 Field Guide. It summarizes reviewed
+            portfolio facts without copying the Project Guide's AGPL implementation, the Hub
+            Directory's BUSL/legacy artifacts, private flagship source, or historical exports.
+          </p>
+        </div>
+        <div class="guide-actions">
+          <a class="button button-primary" href="./">Return to the catalog</a>
+          <a class="button button-secondary" href="https://github.com/Deathcharge/samsarix-field-guide">Inspect the source</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div>
+          <p class="footer-name">Samsarix Field Guide</p>
+          <p>Architecture and lifecycle labels are dated guidance, not runtime or release certification.</p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <a href="./">Catalog</a>
+          <a href="https://github.com/Deathcharge/samsarix-field-guide">Source</a>
+          <a href="mailto:contact@samsarix.com">Contact</a>
+          <a href="https://github.com/Deathcharge/samsarix-field-guide/blob/main/LICENSE">License</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

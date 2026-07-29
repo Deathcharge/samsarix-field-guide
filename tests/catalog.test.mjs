@@ -5,13 +5,53 @@ import { CATEGORIES, PROJECTS } from "../docs/catalog.js";
 import { filterProjects, normalizeText, sortProjects } from "../docs/catalog-core.js";
 import { createStaticServer } from "../scripts/serve.mjs";
 
+const EXPECTED_PUBLIC_REPOSITORIES = [
+  "agent-consensus",
+  "Helix",
+  "helix-hub-shared",
+  "Helix-Unified-Hub",
+  "neural-mesh",
+  "policy-engine",
+  "routine-engine",
+  "samsarix-agent-ethics",
+  "samsarix-agent-orchestration",
+  "samsarix-agent-swarm",
+  "samsarix-analytics",
+  "samsarix-chat-engine",
+  "samsarix-cli",
+  "samsarix-codegen",
+  "samsarix-core",
+  "samsarix-creative-spirals",
+  "samsarix-discord-bot",
+  "samsarix-field-atlas",
+  "samsarix-field-guide",
+  "samsarix-integration-guard",
+  "samsarix-narrative-engine",
+  "samsarix-notifications",
+  "samsarix-page-lens",
+  "samsarix-spirals",
+  "samsarix-story-studio",
+  "samsarix-token-cost-manager",
+  "samsarix-vscode",
+  "samsarix-workspace",
+  "ucf-protocol",
+  "unified-llm",
+].sort((left, right) => left.localeCompare(right, "en-US", { sensitivity: "base" }));
+
 test("catalog entries have unique IDs and supported categories", () => {
   assert.equal(new Set(PROJECTS.map(({ id }) => id)).size, PROJECTS.length);
   assert.equal(PROJECTS.length, 30);
   for (const project of PROJECTS) {
     assert.ok(Object.hasOwn(CATEGORIES, project.category));
     assert.match(project.repoUrl, /^https:\/\/github\.com\/Deathcharge\//);
+    assert.equal(new URL(project.repoUrl).pathname, `/Deathcharge/${project.name}`);
   }
+  assert.deepEqual(
+    PROJECTS.map(({ name }) => name).sort((left, right) =>
+      left.localeCompare(right, "en-US", { sensitivity: "base" }),
+    ),
+    EXPECTED_PUBLIC_REPOSITORIES,
+  );
 });
 
 test("search is case-insensitive and matches use-case text", () => {
@@ -22,8 +62,8 @@ test("search is case-insensitive and matches use-case text", () => {
 
 test("category and query filters compose", () => {
   const matches = filterProjects(PROJECTS, { query: "python", category: "library" });
-  assert.ok(matches.some(({ id }) => id === "helix-chat-engine"));
-  assert.ok(matches.some(({ id }) => id === "helix-core"));
+  assert.ok(matches.some(({ id }) => id === "samsarix-chat-engine"));
+  assert.ok(matches.some(({ id }) => id === "samsarix-core"));
   assert.ok(matches.some(({ id }) => id === "unified-llm"));
   assert.equal(filterProjects(PROJECTS, { query: "extension", category: "research" }).length, 0);
 });
@@ -50,6 +90,10 @@ test("development server serves the main page, handles HEAD, and contains traver
   assert.equal(home.status, 200);
   assert.match(home.headers.get("content-security-policy") ?? "", /default-src 'self'/);
   assert.match(await home.text(), /Samsarix Field Guide/);
+
+  const boundaries = await fetch(`${base}/portfolio-boundaries.html`);
+  assert.equal(boundaries.status, 200);
+  assert.match(await boundaries.text(), /Know what each layer is allowed to own/);
 
   const head = await fetch(`${base}/styles.css`, { method: "HEAD" });
   assert.equal(head.status, 200);

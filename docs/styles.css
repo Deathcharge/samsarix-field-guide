@@ -838,6 +838,155 @@ code {
   color: rgba(255, 253, 248, 0.75);
 }
 
+.boundary-cta {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 84px);
+  align-items: start;
+  padding-block: 84px;
+  border-top: 1px solid var(--line);
+}
+
+.boundary-cta h2 {
+  max-width: 620px;
+  margin: 18px 0 0;
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.boundary-cta .button {
+  margin-top: 18px;
+}
+
+.guide-page {
+  overflow: hidden;
+}
+
+.guide-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.65fr);
+  gap: clamp(40px, 7vw, 96px);
+  align-items: end;
+  padding-block: clamp(70px, 9vw, 120px);
+}
+
+.guide-hero h1 {
+  max-width: 900px;
+  margin: 20px 0 28px;
+  font-size: clamp(3.5rem, 8vw, 7.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.guide-section {
+  padding-block: 88px;
+}
+
+.boundary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 42px;
+}
+
+.boundary-card {
+  min-height: 270px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(23, 21, 31, 0.06);
+}
+
+.boundary-card > span,
+.lifecycle-status {
+  color: var(--violet-dark);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.boundary-card h3,
+.lifecycle-table h3 {
+  margin: 28px 0 12px;
+  font-size: 1.2rem;
+}
+
+.boundary-card p,
+.lifecycle-table p {
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.guide-section-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.guide-section-dark .section-heading > p,
+.guide-section-dark .sequence-list {
+  color: rgba(255, 253, 248, 0.78);
+}
+
+.sequence-list,
+.adoption-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 42px 0 0;
+  padding: 0;
+  list-style-position: inside;
+}
+
+.sequence-list li,
+.adoption-list li {
+  padding: 24px;
+  border: 1px solid rgba(255, 253, 248, 0.2);
+  border-radius: var(--radius-sm);
+  line-height: 1.65;
+}
+
+.adoption-list li {
+  border-color: var(--line);
+  background: var(--white);
+  color: var(--ink-soft);
+}
+
+.lifecycle-section {
+  background: var(--paper-deep);
+}
+
+.lifecycle-table {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 42px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--line);
+}
+
+.lifecycle-table article {
+  min-height: 220px;
+  padding: 30px;
+  background: var(--white);
+}
+
+.lifecycle-table .lifecycle-status {
+  margin: 0;
+}
+
+.guide-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
 .footer-inner .footer-name {
   margin: 0;
   color: var(--white);
@@ -877,6 +1026,15 @@ code {
   .hero {
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .guide-hero,
+  .boundary-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .boundary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-note {
@@ -945,8 +1103,16 @@ code {
   .route-grid,
   .project-grid,
   .standards-grid,
-  .trust-section {
+  .trust-section,
+  .boundary-grid,
+  .sequence-list,
+  .adoption-list,
+  .lifecycle-table {
     grid-template-columns: 1fr;
+  }
+
+  .guide-hero h1 {
+    font-size: clamp(3rem, 15vw, 5rem);
   }
 
   .route-card:last-child,

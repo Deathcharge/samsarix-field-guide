@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.mjs",
+    "audit:catalog": "node scripts/audit-catalog.mjs",
     "lint": "node scripts/lint.mjs",
     "test": "node --test",
     "build": "node scripts/build.mjs",
