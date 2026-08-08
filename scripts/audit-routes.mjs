@@ -5,10 +5,6 @@ const headers = {
   "User-Agent": "samsarix-field-guide-route-audit",
 };
 
-if (process.env.GITHUB_TOKEN) {
-  headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
-}
-
 async function inspectRoute(project) {
   const response = await fetch(project.repoUrl, {
     method: "HEAD",

@@ -24,7 +24,15 @@ const REQUIRED_FILES = [
   "robots.txt",
 ];
 
-const REQUIRED_ROOT_FILES = ["LICENSE", "NOTICE", "SECURITY.md", "TRADEMARKS.md"];
+const REQUIRED_ROOT_FILES = [
+  ".github/ISSUE_TEMPLATE/catalog-correction.yml",
+  ".github/ISSUE_TEMPLATE/config.yml",
+  ".github/ISSUE_TEMPLATE/pilot-result.yml",
+  "LICENSE",
+  "NOTICE",
+  "SECURITY.md",
+  "TRADEMARKS.md",
+];
 
 const REQUIRED_HTML_MARKERS = [
   'id="main-content"',
@@ -106,6 +114,11 @@ export async function verifyRepository() {
 
   const workbenchScript = await readFile(resolve(DOCS, "workbench.js"), "utf8");
   assert(!workbenchScript.includes("fetch("), "The Decision Workbench must not make background requests.");
+
+  const pilotIssueTemplate = await readFile(resolve(ROOT, ".github/ISSUE_TEMPLATE/pilot-result.yml"), "utf8");
+  assert(pilotIssueTemplate.includes("id: workbench_url"), "Pilot reports must capture the shared Decision Workbench URL.");
+  const routeAudit = await readFile(resolve(ROOT, "scripts/audit-routes.mjs"), "utf8");
+  assert(!routeAudit.includes("Authorization") && !routeAudit.includes("GITHUB_TOKEN"), "Public route audits must not send credentials.");
 
   const license = await readFile(resolve(ROOT, "LICENSE"), "utf8");
   assert(license.startsWith("Mozilla Public License Version 2.0"), "LICENSE must contain the standard MPL-2.0 text.");

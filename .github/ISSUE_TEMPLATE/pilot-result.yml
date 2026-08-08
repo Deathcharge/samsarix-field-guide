@@ -30,6 +30,14 @@ body:
       placeholder: https://github.com/Deathcharge/example @ abc1234
     validations:
       required: true
+  - type: input
+    id: workbench_url
+    attributes:
+      label: Shared Decision Workbench URL
+      description: Paste the complete workbench link so the outcome, constraints, and compared candidates can be reproduced.
+      placeholder: https://deathcharge.github.io/samsarix-field-guide/workbench.html?outcome=...
+    validations:
+      required: true
   - type: textarea
     id: pilot
     attributes:

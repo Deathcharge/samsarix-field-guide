@@ -15,6 +15,7 @@
   --radius-sm: 12px;
   --radius-md: 20px;
   --radius-lg: 32px;
+  --mono: SFMono-Regular, Consolas, "Liberation Mono", monospace;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -60,7 +61,7 @@ code {
   border: 1px solid var(--line);
   border-radius: 0.35em;
   background: var(--paper-deep);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family: var(--mono);
   font-size: 0.88em;
 }
 
@@ -118,7 +119,7 @@ code {
   border-radius: 50%;
   background: var(--ink);
   color: var(--acid);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.85rem;
 }
 
@@ -168,7 +169,7 @@ code {
 .project-category,
 .project-activity,
 .language-tag {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family: var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.075em;
 }
@@ -312,7 +313,7 @@ code {
 }
 
 .signal-list dt {
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 1.2rem;
   font-weight: 900;
 }
@@ -402,7 +403,7 @@ code {
   border: 1px solid var(--ink);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.44);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
   font-weight: 900;
 }
@@ -563,7 +564,7 @@ code {
 .results-bar p {
   margin: 0;
   color: rgba(255, 253, 248, 0.68);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -642,7 +643,7 @@ code {
   margin: 9px 0 0;
   overflow-wrap: anywhere;
   color: rgba(255, 253, 248, 0.48);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
 }
 
@@ -721,7 +722,7 @@ code {
 .empty-mark {
   margin: 0;
   color: var(--acid);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 3rem;
 }
 
@@ -764,7 +765,7 @@ code {
   place-items: center;
   border: 1px solid var(--ink);
   border-radius: 50%;
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 1.25rem;
   font-weight: 900;
 }
@@ -902,7 +903,7 @@ code {
 .boundary-card > span,
 .lifecycle-status {
   color: var(--violet-dark);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1191,7 +1192,7 @@ code {
   border: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
 }
 
@@ -1229,7 +1230,7 @@ code {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 253, 248, 0.6);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -1300,7 +1301,7 @@ code {
 .decision-fieldset legend span {
   margin-right: 8px;
   color: var(--violet-dark);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1407,7 +1408,7 @@ code {
   min-height: 1.3em;
   margin: 0;
   color: var(--ink-soft);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
 }
 
@@ -1438,7 +1439,7 @@ code {
   max-width: 240px;
   margin: 0;
   color: var(--acid);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.7rem;
   line-height: 1.5;
 }
@@ -1468,7 +1469,7 @@ code {
 
 .recommendation-rank {
   color: rgba(255, 253, 248, 0.42);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 800;
 }
@@ -1506,7 +1507,7 @@ code {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   color: rgba(255, 253, 248, 0.58);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.62rem;
 }
 
@@ -1619,7 +1620,7 @@ code {
 .comparison-table .comparison-label {
   width: 170px;
   color: var(--ink);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.68rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1682,7 +1683,7 @@ code {
 .pilot-kicker {
   margin: 0;
   color: var(--violet-dark);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.07em;
