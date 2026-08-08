@@ -12,7 +12,7 @@ Canonical deployment: <https://deathcharge.github.io/samsarix-field-guide/>
 
 ## Release disposition
 
-**Release candidate.** The repository is a coherent standalone product: a dependency-free public portfolio guide plus an outcome-led Decision Workbench. The workbench turns user constraints into a transparent shortlist, comparison, and pilot plan without claiming to score project quality. Local implementation, documentation, and validation are complete; hosted CI, pull-request review, merge, and post-deployment smoke testing are the remaining gates for this expansion.
+**Production baseline.** The repository is a coherent standalone product: a dependency-free public portfolio guide plus an outcome-led Decision Workbench. The workbench turns user constraints into a transparent shortlist, comparison, and pilot plan without claiming to score project quality. Implementation, documentation, local and hosted validation, reviewed merges, deployment repair, and production smoke testing are complete for this expansion.
 
 ## Evidence reviewed
 
@@ -129,6 +129,7 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 - Added a route-specific social preview and evidence-backed competitive positioning.
 - Added structured public issue forms for pilot results and evidence-backed catalog corrections.
 - Added a bounded live route audit for all catalog destinations.
+- Restored production publishing with a least-privilege GitHub Pages workflow pinned to immutable official-action revisions.
 
 ## Release acceptance criteria
 
@@ -141,14 +142,14 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 - [x] Claims are limited to reviewed evidence and clearly scoped.
 - [x] CI runs the same meaningful check as local development.
 - [x] MPL-2.0, copyright notice, trademark policy, and working contact paths are present.
-- [ ] GitHub-hosted CI passes on the pushed branch.
+- [x] GitHub-hosted CI passes on the pushed branch and merged default branch.
 - [x] Every public catalog entry has a valid Decision Workbench profile.
 - [x] Recommendations expose matching and missing constraints without a quality score.
 - [x] Comparisons are bounded to three candidates and pilot plans contain three evidence steps.
 - [x] Shared briefs require no account, storage, analytics, or runtime network request.
 - [x] Public pilot reports require reproducible evidence and an explicit confidential-data check.
-- [ ] A draft pull request is reviewed and merged.
-- [ ] The published site and social asset are smoke-tested after deployment.
+- [x] The product and deployment repair pull requests are reviewed and merged.
+- [x] The published site, workbench modules, social asset, and custom 404 are smoke-tested after deployment.
 - [ ] Counsel reviews ownership and trademark policy before formal enforcement or commercial dual licensing.
 
 ## Known risks and deferred work
@@ -168,9 +169,10 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 | Check | Result |
 | --- | --- |
 | `npm ci` | Passed; one root package audited and zero vulnerabilities found. |
-| `npm run check` | Passed; 33 text files linted, the site and decision contracts validated, 9/9 tests passed, and `dist/` built. |
+| `npm run check` | Passed; 34 text files linted, the site, decision, issue-form, and deployment contracts validated, 9/9 tests passed, and `dist/` built. |
 | Catalog contract | Passed; all 30 active public repositories are represented by 30 unique records and decision profiles. |
 | Outbound route audit | Passed; `npm run audit:catalog` matched the live inventory and all 30 repository routes returned successful HTTP responses on August 8, 2026. |
 | Social asset | Inspected at 1731×909; approved text is “SAMSARIX DECISION WORKBENCH” and “Decide. Compare. Pilot.” |
-| GitHub-hosted CI | Pending branch publication. |
-| Production Pages smoke test | Pending merge to the configured publishing branch. |
+| GitHub-hosted CI | Passed on product PR #5 at `45b1455`, merged main at `3154bd2`, deployment repair PR #6 at `087d34c`, and published main at `efa776a`. |
+| Production Pages smoke test | Passed at `efa776a`: current home, workbench HTML, browser module, and decision model returned HTTP 200; the custom not-found route returned HTTP 404. |
+| Published social asset | Passed; HTTP 200 `image/png`, 1,842,467 bytes, with repository and production SHA-256 `f5df203ebb38ce348816d075cf3a23de81cbdece8ce415ba5ba50ac105cba1e5`. |

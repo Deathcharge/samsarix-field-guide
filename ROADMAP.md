@@ -7,7 +7,7 @@ This roadmap separates four gates: merge, release, publication, and flagship ado
 Portfolio role: **flagship companion**. Treat this as a thin companion to Samsarix Unified. The flagship remains canonical for account, social, realm, billing, and durable user-data behavior.
 Planned repository identity: `Deathcharge/samsarix-field-guide` (ready).
 
-Current disposition: Productization, repository-coordinate updates, and portfolio consolidation are merged. The current product phase adds the Decision Workbench: an outcome-led matcher, three-candidate comparison, and bounded pilot planner that remains independent from the flagship. Release and flagship adoption remain separate decisions.
+Current disposition: The Decision Workbench production baseline is merged and published. It provides an outcome-led matcher, three-candidate comparison, and bounded pilot planner that remains independent from the flagship. Flagship adoption remains a separate decision.
 
 ## Stabilize the productized default
 
@@ -20,7 +20,7 @@ Current disposition: Productization, repository-coordinate updates, and portfoli
 - Review priority: merge.
 - Review priority: browser/Pages/link verification.
 
-## Release candidate
+## Production baseline and next hardening
 
 - Bind generated content and links to an explicit flagship release or API version.
 - Test navigation, accessibility, deployment, and stale-content behavior.
@@ -30,7 +30,7 @@ Current hardening backlog:
 
 - Catalog descriptions and activity remain a dated snapshot even though repository-name drift now has a live read-only audit command.
 - No automated content-maturity or outbound-service health certification; those remain destination-owned checks.
-- Hosted/visual/accessibility claims were not independently tested in this audit.
+- Production HTML, JavaScript, decision data, social asset, and custom 404 were smoke-tested; browser interaction and assistive-technology lab testing remain future hardening.
 - A future company/flagship site may link to or replace this route, but this repository is the canonical public portfolio map until that migration is explicit.
 - The 1.88 MB social image is larger than necessary for a small static site.
 - License transition and content ownership need approval.
