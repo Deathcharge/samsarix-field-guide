@@ -28,6 +28,7 @@ const REQUIRED_ROOT_FILES = [
   ".github/ISSUE_TEMPLATE/catalog-correction.yml",
   ".github/ISSUE_TEMPLATE/config.yml",
   ".github/ISSUE_TEMPLATE/pilot-result.yml",
+  ".github/workflows/pages.yml",
   "LICENSE",
   "NOTICE",
   "SECURITY.md",

@@ -110,11 +110,11 @@ The deployable source is `docs/`, matching the repository's GitHub Pages setup. 
 
 ## Deployment
 
-GitHub Pages publishes the site from the repository's configured branch and `docs/` directory:
+The least-privilege `.github/workflows/pages.yml` workflow publishes `docs/` after a change reaches `main`:
 
 <https://deathcharge.github.io/samsarix-field-guide/>
 
-CI verifies changes but does not own deployment credentials or Pages settings. After a merge to the publishing branch, verify the page, social image, search, filters, and representative outbound links.
+The workflow uses GitHub's Pages OIDC deployment path and immutable official-action revisions; it requires no repository-owned deployment secret. CI remains a separate gate. After a merge, verify the page, workbench, social image, and representative outbound links.
 
 ## Security and privacy
 
