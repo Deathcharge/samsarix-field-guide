@@ -3,6 +3,16 @@ import { once } from "node:events";
 import { test } from "node:test";
 import { CATEGORIES, PROJECTS } from "../docs/catalog.js";
 import { filterProjects, normalizeText, sortProjects } from "../docs/catalog-core.js";
+import { CONSTRAINTS, OUTCOMES, PROJECT_PROFILES } from "../docs/decision-model.js";
+import {
+  buildEvaluationPlan,
+  comparisonSelection,
+  formatEvaluationPlan,
+  normalizeWorkbenchState,
+  parseWorkbenchState,
+  recommendProjects,
+  serializeWorkbenchState,
+} from "../docs/workbench-core.js";
 import { createStaticServer } from "../scripts/serve.mjs";
 
 const EXPECTED_PUBLIC_REPOSITORIES = [
@@ -76,6 +86,72 @@ test("sorting puts featured routes first without mutating input", () => {
   assert.ok(sorted.slice(0, 3).every(({ featured }) => featured));
 });
 
+test("decision profiles cover the full catalog with known outcomes and traits", () => {
+  const outcomeIds = new Set(OUTCOMES.map(({ id }) => id));
+  const constraintIds = new Set(CONSTRAINTS.map(({ id }) => id));
+  assert.equal(outcomeIds.size, 8);
+  assert.equal(constraintIds.size, 6);
+  assert.deepEqual(Object.keys(PROJECT_PROFILES).sort(), PROJECTS.map(({ id }) => id).sort());
+
+  for (const project of PROJECTS) {
+    const profile = PROJECT_PROFILES[project.id];
+    assert.ok(profile.outcomes.length >= 1);
+    assert.ok(profile.outcomes.every((outcome) => outcomeIds.has(outcome)));
+    assert.ok(profile.traits.every((trait) => constraintIds.has(trait)));
+    assert.ok(profile.firstCheck.length >= 40);
+    assert.ok(profile.watchFor.length >= 40);
+  }
+
+  for (const outcome of OUTCOMES) {
+    assert.ok(
+      Object.values(PROJECT_PROFILES).filter((profile) => profile.outcomes.includes(outcome.id)).length >= 3,
+      `${outcome.id} needs at least three comparison candidates`,
+    );
+  }
+});
+
+test("recommendations prioritize selected fit signals without inventing a quality score", () => {
+  const recommendations = recommendProjects(PROJECTS, {
+    outcome: "control-ai-costs",
+    constraints: ["no-key", "local-first", "deterministic"],
+  });
+  assert.equal(recommendations[0].project.id, "samsarix-token-cost-manager");
+  assert.deepEqual(recommendations[0].matchedConstraints, ["no-key", "local-first", "deterministic"]);
+  assert.ok(recommendations.some(({ project }) => project.id === "samsarix-analytics"));
+  assert.ok(recommendations.every(({ profile }) => profile.outcomes.includes("control-ai-costs")));
+  assert.ok(recommendations.every((recommendation) => !Object.hasOwn(recommendation, "qualityScore")));
+});
+
+test("workbench state is bounded, shareable, and resilient to unknown values", () => {
+  const state = normalizeWorkbenchState({
+    outcome: "not-real",
+    constraints: ["local-first", "unknown", "local-first"],
+    compare: ["samsarix-core", "bad-id", "samsarix-cli", "policy-engine", "routine-engine"],
+  });
+  assert.equal(state.outcome, OUTCOMES[0].id);
+  assert.deepEqual(state.constraints, ["local-first"]);
+  assert.deepEqual(state.compare, ["samsarix-core", "samsarix-cli", "policy-engine"]);
+
+  const serialized = serializeWorkbenchState(state);
+  assert.deepEqual(parseWorkbenchState(`?${serialized}`), state);
+});
+
+test("comparison and pilot helpers remain bounded and actionable", () => {
+  const recommendations = recommendProjects(PROJECTS, { outcome: "build-agent-workflows" });
+  const selected = comparisonSelection(recommendations, [
+    "samsarix-core",
+    "samsarix-agent-orchestration",
+    "unified-llm",
+    "routine-engine",
+  ]);
+  assert.equal(selected.length, 3);
+  const plan = buildEvaluationPlan(selected[0]);
+  assert.equal(plan.steps.length, 3);
+  assert.match(formatEvaluationPlan(plan), /Confirm the boundary:/);
+  assert.match(formatEvaluationPlan(plan), /Prove the smallest path:/);
+  assert.match(formatEvaluationPlan(plan), /Record the decision:/);
+});
+
 test("development server serves the main page, handles HEAD, and contains traversal", async (context) => {
   const server = createStaticServer();
   server.listen(0, "127.0.0.1");
@@ -94,6 +170,10 @@ test("development server serves the main page, handles HEAD, and contains traver
   const boundaries = await fetch(`${base}/portfolio-boundaries.html`);
   assert.equal(boundaries.status, 200);
   assert.match(await boundaries.text(), /Know what each layer is allowed to own/);
+
+  const workbench = await fetch(`${base}/workbench.html?outcome=govern-agent-actions`);
+  assert.equal(workbench.status, 200);
+  assert.match(await workbench.text(), /From a vague AI job to a defensible pilot/);
 
   const head = await fetch(`${base}/styles.css`, { method: "HEAD" });
   assert.equal(head.status, 200);

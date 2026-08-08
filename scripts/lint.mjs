@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve } from "node:path";
-import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { SourceTextModule } from "node:vm";
 import { verifyRepository } from "./verify.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -21,10 +21,11 @@ async function walk(directory) {
   return files;
 }
 
-function syntaxCheck(file) {
-  const result = spawnSync(process.execPath, ["--check", file], { cwd: ROOT, encoding: "utf8" });
-  if (result.status !== 0) {
-    throw new Error(result.stderr || `JavaScript syntax check failed for ${file}`);
+function syntaxCheck(file, content) {
+  try {
+    new SourceTextModule(content, { identifier: file });
+  } catch (error) {
+    throw new Error(`JavaScript syntax check failed for ${file}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
@@ -39,7 +40,7 @@ for (const file of files) {
   content.split("\n").forEach((line, index) => {
     if (/[ \t]+$/.test(line)) failures.push(`${label}:${index + 1}: trailing whitespace`);
   });
-  if (JAVASCRIPT_EXTENSIONS.has(extname(file))) syntaxCheck(file);
+  if (JAVASCRIPT_EXTENSIONS.has(extname(file))) syntaxCheck(file, content);
 }
 
 try {

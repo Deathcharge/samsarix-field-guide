@@ -1,0 +1,52 @@
+name: Catalog or decision correction
+description: Correct a public project fact, fit signal, first check, or adoption caveat.
+title: "[Evidence]: "
+body:
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+      placeholder: https://github.com/Deathcharge/example
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface to correct
+      options:
+        - Catalog fact or description
+        - Outcome mapping
+        - Constraint signal
+        - Smallest check
+        - Adoption caveat
+        - Broken route
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current statement
+      description: Quote or describe the narrow statement that is inaccurate.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public evidence
+      description: Link the README, source, release, issue, or other durable public evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: Suggest cautious replacement wording or the profile change.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public evidence check
+      options:
+        - label: This report contains no secret, personal data, private source, or confidential information.
+          required: true
