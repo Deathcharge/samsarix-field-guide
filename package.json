@@ -2,12 +2,13 @@
   "name": "samsarix-field-guide",
   "version": "1.0.0",
   "private": true,
-  "description": "A dependency-free field guide to the public Samsarix repository portfolio.",
+  "description": "A dependency-free decision workbench for exploring, comparing, and piloting public Samsarix projects.",
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.mjs",
     "audit:catalog": "node scripts/audit-catalog.mjs",
-    "lint": "node scripts/lint.mjs",
+    "audit:routes": "node scripts/audit-routes.mjs",
+    "lint": "node --experimental-vm-modules scripts/lint.mjs",
     "test": "node --test",
     "build": "node scripts/build.mjs",
     "check": "npm run lint && npm test && npm run build"

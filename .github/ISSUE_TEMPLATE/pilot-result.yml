@@ -1,0 +1,79 @@
+name: Pilot result
+description: Share evidence from a bounded Samsarix project evaluation.
+title: "[Pilot]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing a concrete path. Report only evidence you are comfortable making public; remove secrets, private source, customer data, and credentials.
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      description: Which Decision Workbench job were you evaluating?
+      options:
+        - Control AI spend
+        - Govern agent actions
+        - Build agent workflows
+        - Evaluate multi-agent decisions
+        - Improve developer workflow
+        - Add application capabilities
+        - Create and adapt content
+        - Understand the architecture
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository and commit
+      description: Link the public repository and include the exact commit or release tested.
+      placeholder: https://github.com/Deathcharge/example @ abc1234
+    validations:
+      required: true
+  - type: input
+    id: workbench_url
+    attributes:
+      label: Shared Decision Workbench URL
+      description: Paste the complete workbench link so the outcome, constraints, and compared candidates can be reproduced.
+      placeholder: https://deathcharge.github.io/samsarix-field-guide/workbench.html?outcome=...
+    validations:
+      required: true
+  - type: textarea
+    id: pilot
+    attributes:
+      label: Smallest path tested
+      description: Describe the bounded scenario, commands, fixtures, and environment needed to reproduce it.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Observed result
+      description: What happened, how long did it take, and what evidence did you capture?
+    validations:
+      required: true
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Current decision
+      options:
+        - Adopt for this bounded use case
+        - Continue evaluating
+        - Do not adopt for this use case
+        - Inconclusive
+    validations:
+      required: true
+  - type: textarea
+    id: limitation
+    attributes:
+      label: Limitation or follow-up
+      description: Name the most important caveat, missing evidence, or next experiment.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public evidence check
+      options:
+        - label: I removed secrets, private code, personal data, and confidential customer or company information.
+          required: true

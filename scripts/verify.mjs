@@ -2,6 +2,7 @@ import { access, readFile, stat } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CATEGORIES, PROJECTS } from "../docs/catalog.js";
+import { CONSTRAINTS, OUTCOMES, PROJECT_PROFILES } from "../docs/decision-model.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DOCS = resolve(ROOT, "docs");
@@ -13,12 +14,25 @@ const REQUIRED_FILES = [
   "app.js",
   "catalog.js",
   "catalog-core.js",
+  "decision-model.js",
   "styles.css",
   "og.png",
+  "workbench-og.png",
+  "workbench-core.js",
+  "workbench.html",
+  "workbench.js",
   "robots.txt",
 ];
 
-const REQUIRED_ROOT_FILES = ["LICENSE", "NOTICE", "SECURITY.md", "TRADEMARKS.md"];
+const REQUIRED_ROOT_FILES = [
+  ".github/ISSUE_TEMPLATE/catalog-correction.yml",
+  ".github/ISSUE_TEMPLATE/config.yml",
+  ".github/ISSUE_TEMPLATE/pilot-result.yml",
+  "LICENSE",
+  "NOTICE",
+  "SECURITY.md",
+  "TRADEMARKS.md",
+];
 
 const REQUIRED_HTML_MARKERS = [
   'id="main-content"',
@@ -32,6 +46,20 @@ const REQUIRED_HTML_MARKERS = [
   'property="og:image"',
   'mailto:contact@samsarix.com',
   'mailto:support@samsarix.com',
+  '<noscript>',
+];
+
+const REQUIRED_WORKBENCH_MARKERS = [
+  'id="decision-form"',
+  'name="outcome"',
+  'name="constraint"',
+  'id="recommendation-grid"',
+  'id="comparison-head"',
+  'id="pilot-steps"',
+  'Fit signals, not quality scores',
+  'role="status"',
+  'property="og:image"',
+  'src="./workbench.js"',
   '<noscript>',
 ];
 
@@ -59,6 +87,11 @@ export async function verifyRepository() {
   for (const marker of REQUIRED_HTML_MARKERS) {
     assert(html.includes(marker), `index.html is missing required marker: ${marker}`);
   }
+
+  const workbenchHtml = await readFile(resolve(DOCS, "workbench.html"), "utf8");
+  for (const marker of REQUIRED_WORKBENCH_MARKERS) {
+    assert(workbenchHtml.includes(marker), `workbench.html is missing required marker: ${marker}`);
+  }
   for (const claim of FORBIDDEN_CLAIMS) {
     assert(!html.toLocaleLowerCase("en-US").includes(claim.toLocaleLowerCase("en-US")), `index.html contains retired claim: ${claim}`);
   }
@@ -70,6 +103,22 @@ export async function verifyRepository() {
 
   const socialImage = await stat(resolve(DOCS, "og.png"));
   assert(socialImage.isFile() && socialImage.size > 100_000, "og.png is missing or unexpectedly small.");
+  const workbenchSocialImage = await stat(resolve(DOCS, "workbench-og.png"));
+  assert(workbenchSocialImage.isFile() && workbenchSocialImage.size > 100_000, "workbench-og.png is missing or unexpectedly small.");
+  const workbenchSocialImageData = await readFile(resolve(DOCS, "workbench-og.png"));
+  assert(workbenchSocialImageData.subarray(1, 4).toString("ascii") === "PNG", "workbench-og.png must be a PNG image.");
+  assert(
+    workbenchSocialImageData.readUInt32BE(16) === 1731 && workbenchSocialImageData.readUInt32BE(20) === 909,
+    "workbench-og.png must retain the declared 1731 by 909 dimensions.",
+  );
+
+  const workbenchScript = await readFile(resolve(DOCS, "workbench.js"), "utf8");
+  assert(!workbenchScript.includes("fetch("), "The Decision Workbench must not make background requests.");
+
+  const pilotIssueTemplate = await readFile(resolve(ROOT, ".github/ISSUE_TEMPLATE/pilot-result.yml"), "utf8");
+  assert(pilotIssueTemplate.includes("id: workbench_url"), "Pilot reports must capture the shared Decision Workbench URL.");
+  const routeAudit = await readFile(resolve(ROOT, "scripts/audit-routes.mjs"), "utf8");
+  assert(!routeAudit.includes("Authorization") && !routeAudit.includes("GITHUB_TOKEN"), "Public route audits must not send credentials.");
 
   const license = await readFile(resolve(ROOT, "LICENSE"), "utf8");
   assert(license.startsWith("Mozilla Public License Version 2.0"), "LICENSE must contain the standard MPL-2.0 text.");
@@ -78,6 +127,11 @@ export async function verifyRepository() {
   assert(notice.includes("contact@samsarix.com") && notice.includes("support@samsarix.com"), "NOTICE is missing a working contact path.");
 
   assert(PROJECTS.length === 30, "The catalog must contain all 30 reviewed public repositories.");
+  assert(OUTCOMES.length === 8, "The Decision Workbench must expose eight outcome-led use cases.");
+  assert(CONSTRAINTS.length === 6, "The Decision Workbench must expose six explicit constraints.");
+  assert(Object.keys(PROJECT_PROFILES).length === PROJECTS.length, "Every catalog project must have one decision profile.");
+  const outcomeIds = new Set(OUTCOMES.map(({ id }) => id));
+  const constraintIds = new Set(CONSTRAINTS.map(({ id }) => id));
   const catalogIds = new Set();
   const catalogUrls = new Set();
   for (const project of PROJECTS) {
@@ -97,6 +151,18 @@ export async function verifyRepository() {
     assert(/^\d{4}-\d{2}-\d{2}$/.test(project.lastActivity), `${project.id} has an invalid activity date.`);
     assert(project.summary.length <= 180, `${project.id} summary is too long.`);
     assert(project.useCase.length <= 220, `${project.id} use case is too long.`);
+    const profile = PROJECT_PROFILES[project.id];
+    assert(profile, `${project.id} is missing a decision profile.`);
+    assert(profile.outcomes.length > 0 && profile.outcomes.every((id) => outcomeIds.has(id)), `${project.id} has an invalid workbench outcome.`);
+    assert(profile.traits.every((id) => constraintIds.has(id)), `${project.id} has an invalid workbench constraint.`);
+    assert(profile.firstCheck.length >= 40, `${project.id} needs a concrete first check.`);
+    assert(profile.watchFor.length >= 40, `${project.id} needs a concrete adoption caveat.`);
+  }
+  for (const outcome of OUTCOMES) {
+    assert(
+      Object.values(PROJECT_PROFILES).filter((profile) => profile.outcomes.includes(outcome.id)).length >= 3,
+      `${outcome.id} needs at least three comparison candidates.`,
+    );
   }
 
   return { projectCount: PROJECTS.length, fileCount: REQUIRED_FILES.length + REQUIRED_ROOT_FILES.length };

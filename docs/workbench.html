@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#17151f">
+    <meta name="referrer" content="no-referrer">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; form-action 'none'; img-src 'self' data:; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'"
+    >
+    <meta
+      name="description"
+      content="Turn an AI or automation job into a transparent Samsarix project shortlist, comparison, and smallest credible pilot plan."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Samsarix Field Guide">
+    <meta property="og:title" content="Samsarix Decision Workbench — Decide. Compare. Pilot.">
+    <meta
+      property="og:description"
+      content="A privacy-first, no-account project matcher and evaluation planner for the public Samsarix portfolio."
+    >
+    <meta property="og:url" content="https://deathcharge.github.io/samsarix-field-guide/workbench.html">
+    <meta property="og:image" content="https://deathcharge.github.io/samsarix-field-guide/workbench-og.png">
+    <meta property="og:image:width" content="1731">
+    <meta property="og:image:height" content="909">
+    <meta property="og:image:alt" content="Samsarix Decision Workbench — Decide. Compare. Pilot.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Samsarix Decision Workbench — Decide. Compare. Pilot.">
+    <meta
+      name="twitter:description"
+      content="A privacy-first, no-account project matcher and evaluation planner for the public Samsarix portfolio."
+    >
+    <meta name="twitter:image" content="https://deathcharge.github.io/samsarix-field-guide/workbench-og.png">
+    <meta name="twitter:image:alt" content="Samsarix Decision Workbench — Decide. Compare. Pilot.">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://deathcharge.github.io/samsarix-field-guide/workbench.html">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Samsarix Decision Workbench — Project Matcher and Pilot Planner</title>
+    <script type="module" src="./workbench.js"></script>
+  </head>
+  <body class="workbench-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="wordmark" href="./" aria-label="Samsarix Field Guide home">
+          <span class="wordmark-mark" aria-hidden="true">S/</span>
+          <span>Samsarix Field Guide</span>
+        </a>
+        <div class="nav-links">
+          <a href="./workbench.html" aria-current="page">Workbench</a>
+          <a href="./#catalog">Catalog</a>
+          <a href="./portfolio-boundaries.html">Boundaries</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="workbench-hero shell" aria-labelledby="workbench-title">
+        <div>
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Decision Workbench
+            <span class="eyebrow-separator" aria-hidden="true">/</span>
+            Fit signals, not quality scores
+          </p>
+          <h1 id="workbench-title">From a vague AI job to a defensible pilot.</h1>
+          <p class="hero-lede">
+            Choose the outcome you need and the constraints you cannot compromise.
+            The workbench turns 30 independent repositories into a transparent shortlist,
+            side-by-side comparison, and smallest credible evaluation plan.
+          </p>
+          <div class="workbench-proof" aria-label="Workbench properties">
+            <span>No account</span>
+            <span>No tracking</span>
+            <span>No live API</span>
+            <span>Shareable brief</span>
+          </div>
+        </div>
+        <aside class="workbench-principle">
+          <p class="note-kicker">The ranking rule</p>
+          <p class="note-quote">Goal first. Constraints second. No hidden maturity score.</p>
+          <p>
+            Every recommendation shows the signals it matched, the smallest thing to try,
+            and a limitation to verify before adoption.
+          </p>
+        </aside>
+      </section>
+
+      <section class="decision-section" aria-labelledby="decision-title">
+        <div class="shell">
+          <div class="section-heading decision-heading">
+            <p class="section-number">01 / Define the job</p>
+            <h2 id="decision-title">Build your evaluation brief</h2>
+            <p>One outcome is required. Constraints are optional and may narrow the strongest matches.</p>
+          </div>
+
+          <form class="decision-form" id="decision-form">
+            <fieldset class="decision-fieldset">
+              <legend><span>Step 1</span> What outcome do you need?</legend>
+              <div class="outcome-grid">
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="control-ai-costs" checked>
+                  <span><strong>Control AI spend</strong><small>Usage, cost, budgets, and telemetry.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="govern-agent-actions">
+                  <span><strong>Govern agent actions</strong><small>Policy, review, and redaction boundaries.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="build-agent-workflows">
+                  <span><strong>Build agent workflows</strong><small>Tools, adapters, state, and bounded steps.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="evaluate-multi-agent">
+                  <span><strong>Evaluate multi-agent decisions</strong><small>Consensus, quorum, handoffs, and coordination.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="improve-developer-workflow">
+                  <span><strong>Improve developer workflow</strong><small>Editor, CLI, page, and code-planning tools.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="add-app-capabilities">
+                  <span><strong>Add application capabilities</strong><small>Chat, notifications, metrics, status, and workspace.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="create-content">
+                  <span><strong>Create and adapt content</strong><small>Stories, editorial stages, and channel-ready drafts.</small></span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="outcome" value="understand-portfolio">
+                  <span><strong>Understand the architecture</strong><small>Roles, boundaries, lifecycle, and project history.</small></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="decision-fieldset constraint-fieldset">
+              <legend><span>Step 2</span> What must the evaluation support?</legend>
+              <div class="constraint-grid">
+                <label><input type="checkbox" name="constraint" value="no-key"><span>No API key<small>Useful path without provider credentials</small></span></label>
+                <label><input type="checkbox" name="constraint" value="local-first"><span>Local-first<small>Evaluation stays on your machine</small></span></label>
+                <label><input type="checkbox" name="constraint" value="deterministic"><span>Deterministic path<small>No model output required</small></span></label>
+                <label><input type="checkbox" name="constraint" value="python"><span>Python<small>Package, CLI, or service interface</small></span></label>
+                <label><input type="checkbox" name="constraint" value="visual"><span>Visible interface<small>Browser, editor, or extension UI</small></span></label>
+                <label><input type="checkbox" name="constraint" value="embeddable"><span>Embeddable<small>Designed for another application</small></span></label>
+              </div>
+            </fieldset>
+
+            <div class="decision-actions">
+              <button class="button button-secondary" id="reset-brief" type="button">Reset brief</button>
+              <button class="button button-primary" id="copy-brief-link" type="button">Copy shareable brief link</button>
+              <p class="copy-feedback" id="brief-copy-feedback" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="recommendation-section" aria-labelledby="recommendation-title">
+        <div class="shell">
+          <div class="recommendation-heading">
+            <div class="section-heading">
+              <p class="section-number">02 / Review the shortlist</p>
+              <h2 id="recommendation-title">Best-fit starting points</h2>
+              <p id="recommendation-summary">Preparing recommendations…</p>
+            </div>
+            <p class="recommendation-status" id="recommendation-status" role="status" aria-live="polite"></p>
+          </div>
+          <div class="recommendation-grid" id="recommendation-grid" aria-busy="true">
+            <div class="loading-card" aria-hidden="true"></div>
+            <div class="loading-card" aria-hidden="true"></div>
+            <div class="loading-card" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="comparison-section" aria-labelledby="comparison-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-number">03 / Compare before adopting</p>
+            <h2 id="comparison-title">Your three-candidate comparison</h2>
+            <p>Select up to three shortlist entries. Differences and explicit watch items stay visible.</p>
+          </div>
+          <div class="comparison-shell" id="comparison-shell">
+            <table class="comparison-table">
+              <caption class="sr-only">Comparison of selected Samsarix projects</caption>
+              <thead id="comparison-head"></thead>
+              <tbody id="comparison-body"></tbody>
+            </table>
+          </div>
+          <p class="comparison-empty" id="comparison-empty" hidden>Select a project above to begin a comparison.</p>
+        </div>
+      </section>
+
+      <section class="pilot-section" aria-labelledby="pilot-title">
+        <div class="shell pilot-layout">
+          <div>
+            <p class="section-number">04 / Prove the smallest path</p>
+            <h2 id="pilot-title">A pilot plan you can actually run</h2>
+            <p>
+              The first compared project becomes the pilot candidate. The plan records scope,
+              one concrete exercise, and the evidence needed for a real adoption decision.
+            </p>
+            <button class="button button-primary" id="copy-plan" type="button">Copy pilot plan</button>
+            <a class="pilot-evidence-link" href="https://github.com/Deathcharge/samsarix-field-guide/issues/new?template=pilot-result.yml">
+              Share public pilot evidence <span aria-hidden="true">↗</span>
+            </a>
+            <p class="copy-feedback" id="plan-copy-feedback" role="status" aria-live="polite"></p>
+          </div>
+          <article class="pilot-card" id="pilot-card">
+            <p class="pilot-kicker">Generated evaluation plan</p>
+            <h3 id="pilot-name">Preparing a pilot…</h3>
+            <ol id="pilot-steps"></ol>
+            <a id="pilot-repository" href="https://github.com/Deathcharge">Inspect repository <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="method-section shell" aria-labelledby="method-title">
+        <div class="section-heading">
+          <p class="section-number">05 / Read the recommendation correctly</p>
+          <h2 id="method-title">Fit is not quality, security, or readiness.</h2>
+        </div>
+        <div class="method-grid">
+          <article>
+            <strong>What the workbench ranks</strong>
+            <p>Declared use-case fit, then how many selected constraints have an evidence-backed evaluation path.</p>
+          </article>
+          <article>
+            <strong>What it refuses to score</strong>
+            <p>Security, maintenance, package publication, compatibility, or production readiness without destination-owned evidence.</p>
+          </article>
+          <article>
+            <strong>What leaves your browser</strong>
+            <p>Nothing until you open a repository. The brief lives in the URL; there is no account, analytics, storage, or background request.</p>
+          </article>
+        </div>
+      </section>
+
+      <noscript>
+        <div class="shell noscript-note workbench-noscript">
+          <strong>The Decision Workbench needs JavaScript for matching and comparison.</strong>
+          The complete <a href="./#catalog">repository catalog</a> and
+          <a href="./portfolio-boundaries.html">portfolio boundaries guide</a> remain available.
+        </div>
+      </noscript>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div>
+          <p class="footer-name">Samsarix Decision Workbench</p>
+          <p>Turn an unfamiliar portfolio into a shortlist, comparison, and bounded pilot.</p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <a href="./">Field Guide</a>
+          <a href="https://github.com/Deathcharge/samsarix-field-guide">Source</a>
+          <a href="mailto:contact@samsarix.com">Contact</a>
+          <a href="mailto:support@samsarix.com">Support</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
