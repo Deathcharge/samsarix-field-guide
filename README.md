@@ -4,7 +4,7 @@ Samsarix Field Guide is a small, static navigator and decision workbench for the
 
 Some GitHub repository addresses still contain the former **Helix** brand because their rename or lifecycle decision is intentionally held. **Samsarix** is the current company and product-family brand. Every destination remains independently responsible for its installation, tests, releases, licensing, and documentation.
 
-**Current maturity:** release candidate. The site, checks, tests, build, catalog audit, license, contact paths, and publishing branch are ready for review. The live GitHub Pages site updates when this branch is merged into the configured publishing source.
+**Current maturity:** production baseline. The Decision Workbench, catalog, tests, build, live audits, license, support paths, and least-privilege Pages deployment are merged and published. Destination projects still own every installation, release, security, compatibility, and readiness claim.
 
 ## Who it is for
 
