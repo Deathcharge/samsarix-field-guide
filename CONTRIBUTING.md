@@ -23,7 +23,7 @@ Use `npm start` to serve the site at <http://127.0.0.1:4173> while editing.
 
 1. Create a focused branch.
 2. Keep the static, zero-runtime-dependency architecture unless a change has a documented product benefit.
-3. Update `docs/catalog.js` for catalog facts and `docs/PRODUCTIZATION.md` for material product or release decisions.
+3. Update `docs/catalog.js` for catalog facts, `docs/decision-model.js` for decision evidence, and `docs/PRODUCTIZATION.md` for material product or release decisions.
 4. Show both the current product label and literal repository name when they differ.
 5. Add or update tests when search, filtering, sorting, routing, serving, or validation changes.
 6. Run `npm run check` before opening a pull request.
@@ -40,6 +40,8 @@ A catalog entry should include only:
 
 Avoid claims such as "battle-tested," "production-ready," "published on PyPI," or "supports deployment to X" unless that fact is independently verified, necessary to this guide, and documented with durable evidence.
 
+A decision profile must also name at least one supported outcome, use only declared constraint traits, give a concrete smallest check, and state a meaningful adoption caveat. Constraint matches are fit signals—not quality, security, health, or maturity scores.
+
 ## Pull requests
 
 Describe the user problem, evidence behind catalog changes, commands run, and any accessibility, privacy, security, legal, or visual effect. Screenshots are useful only when they materially help review.
@@ -53,6 +55,8 @@ The deployable source is `docs/`. Before publishing:
 ```bash
 npm ci
 npm run check
+npm run audit:catalog
+npm run audit:routes
 npm start
 ```
 

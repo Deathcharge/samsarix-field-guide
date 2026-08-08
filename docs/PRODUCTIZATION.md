@@ -1,6 +1,8 @@
 # Samsarix Field Guide — Productization Record
 
-Review date: July 28, 2026
+Initial productization review: July 28, 2026
+
+Decision Workbench expansion review: August 8, 2026
 
 Company steward: Samsarix LLC
 
@@ -10,7 +12,7 @@ Canonical deployment: <https://deathcharge.github.io/samsarix-field-guide/>
 
 ## Release disposition
 
-**Release candidate.** The repository is a coherent standalone product: a dependency-free, searchable public portfolio guide. Local implementation, documentation, automated checks, license structure, support contacts, publication workflow, branch publication, and hosted CI are in place. Pull-request review, merge, and post-deployment smoke testing are the remaining production gates.
+**Release candidate.** The repository is a coherent standalone product: a dependency-free public portfolio guide plus an outcome-led Decision Workbench. The workbench turns user constraints into a transparent shortlist, comparison, and pilot plan without claiming to score project quality. Local implementation, documentation, and validation are complete; hosted CI, pull-request review, merge, and post-deployment smoke testing are the remaining gates for this expansion.
 
 ## Evidence reviewed
 
@@ -32,7 +34,7 @@ Private repositories were used only to understand portfolio boundaries. They are
 
 **Target user:** A developer, evaluator, or contributor asking, “Which repository should I inspect for this job?”
 
-**Primary use case:** In under a minute, choose an outcome, search or filter the complete public inventory, understand the limits of the catalog's claims, and open one relevant repository.
+**Primary use case:** Choose an outcome and operating constraints, review an explainable shortlist, compare up to three candidates, and leave with a smallest credible pilot plan.
 
 **Reason to exist independently:** Portfolio navigation is a distinct function from any agent runtime or flagship application. Every destination owns its installation, tests, releases, security posture, and license; this repository owns only discovery and evidence boundaries.
 
@@ -92,6 +94,21 @@ This is a practical repository default, not legal advice. Counsel should review 
 4. **GitHub Pages `docs/` retained.** This preserves the known deployment shape and canonical URL.
 5. **Repository-owned quality gate.** One zero-dependency command checks formatting, syntax, schema, behavior, HTTP handling, and build output.
 6. **Each destination stands alone.** No sibling source is copied or required at runtime.
+7. **Fit signals over aggregate scores.** The workbench ranks declared outcome and constraint matches, never security, health, or maturity.
+8. **Portable state without persistence.** Outcome, constraints, and comparison IDs live in the URL; there is no account, cookie, analytics, or browser storage.
+
+## Competitive product decision
+
+Current internal developer portals compete on organization-scale ingestion, ownership, operational metadata, scorecards, and self-service workflows. Those capabilities require integrations, persistent state, access control, and ongoing platform ownership.
+
+The Field Guide's defensible wedge is earlier in the adoption journey: convert an unfamiliar public portfolio into a justified shortlist and bounded evaluation plan before a developer spends integration time. The market research and scope boundary are documented in `docs/COMPETITIVE_POSITIONING.md`.
+
+The Decision Workbench supports eight outcome families and six cross-cutting constraints. Every one of the 30 catalog entries has an explicit decision profile containing:
+
+- one or more supported outcomes;
+- evidence-backed evaluation traits;
+- the smallest concrete check a developer can run; and
+- a limitation that must be verified before adoption.
 
 ## Completed work
 
@@ -105,6 +122,13 @@ This is a practical repository default, not legal advice. Counsel should review 
 - Added working general, support, conduct, and private security contact paths.
 - Replaced the mismatched license with standard MPL-2.0 plus notice and trademark files.
 - Reworked the social preview for the Samsarix identity.
+- Added an eight-outcome Decision Workbench covering all 30 public repositories.
+- Added transparent constraint matching, a six-project shortlist, and a three-candidate comparison.
+- Added copyable share URLs and pilot plans without persistence or tracking.
+- Added one concrete first check and adoption caveat for every catalog project.
+- Added a route-specific social preview and evidence-backed competitive positioning.
+- Added structured public issue forms for pilot results and evidence-backed catalog corrections.
+- Added a bounded live route audit for all catalog destinations.
 
 ## Release acceptance criteria
 
@@ -117,7 +141,12 @@ This is a practical repository default, not legal advice. Counsel should review 
 - [x] Claims are limited to reviewed evidence and clearly scoped.
 - [x] CI runs the same meaningful check as local development.
 - [x] MPL-2.0, copyright notice, trademark policy, and working contact paths are present.
-- [x] GitHub-hosted CI passes on the pushed branch.
+- [ ] GitHub-hosted CI passes on the pushed branch.
+- [x] Every public catalog entry has a valid Decision Workbench profile.
+- [x] Recommendations expose matching and missing constraints without a quality score.
+- [x] Comparisons are bounded to three candidates and pilot plans contain three evidence steps.
+- [x] Shared briefs require no account, storage, analytics, or runtime network request.
+- [x] Public pilot reports require reproducible evidence and an explicit confidential-data check.
 - [ ] A draft pull request is reviewed and merged.
 - [ ] The published site and social asset are smoke-tested after deployment.
 - [ ] Counsel reviews ownership and trademark policy before formal enforcement or commercial dual licensing.
@@ -131,16 +160,17 @@ This is a practical repository default, not legal advice. Counsel should review 
 - Private flagship and company-site work can change without this public guide knowing.
 - Browser UI screenshot or assistive-technology lab testing was not requested; semantic structure, CSS behavior, pure catalog logic, and HTTP contracts are covered locally.
 - Legal files improve clarity but cannot replace counsel's review of ownership, prior contributions, registrations, or jurisdiction-specific enforcement.
+- Decision profiles are curated evidence and can drift when destination repositories change.
+- No analytics means adoption learning depends on consented issue, discussion, README-link, and owner-visible GitHub traffic signals.
 
 ## Final verification record
 
 | Check | Result |
 | --- | --- |
-| `npm ci` | Passed; one root package audited, zero vulnerabilities. |
-| `npm run check` | Passed; 21 text files linted, site contract validated, 5/5 tests passed, and `dist/` built. |
-| Catalog contract | Passed; 30 unique records and 30 unique public repository URLs. |
-| Outbound route audit | Passed; all 30 catalog repository URLs returned HTTP 200 on July 28, 2026. |
-| Social asset | Inspected at 1731×909; approved text is “SAMSARIX FIELD GUIDE” and “Find the right route.” |
-| `git diff --check` | Passed after the final implementation review. |
-| GitHub-hosted CI | Passed on draft pull request #1 after branch publication. |
+| `npm ci` | Passed; one root package audited and zero vulnerabilities found. |
+| `npm run check` | Passed; 33 text files linted, the site and decision contracts validated, 9/9 tests passed, and `dist/` built. |
+| Catalog contract | Passed; all 30 active public repositories are represented by 30 unique records and decision profiles. |
+| Outbound route audit | Passed; `npm run audit:catalog` matched the live inventory and all 30 repository routes returned successful HTTP responses on August 8, 2026. |
+| Social asset | Inspected at 1731×909; approved text is “SAMSARIX DECISION WORKBENCH” and “Decide. Compare. Pilot.” |
+| GitHub-hosted CI | Pending branch publication. |
 | Production Pages smoke test | Pending merge to the configured publishing branch. |

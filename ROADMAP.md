@@ -7,7 +7,7 @@ This roadmap separates four gates: merge, release, publication, and flagship ado
 Portfolio role: **flagship companion**. Treat this as a thin companion to Samsarix Unified. The flagship remains canonical for account, social, realm, billing, and durable user-data behavior.
 Planned repository identity: `Deathcharge/samsarix-field-guide` (ready).
 
-Current disposition: Productization and repository-coordinate updates are merged. This branch makes Field Guide the canonical public portfolio map and consolidates the useful evaluation/lifecycle guidance without copying incompatible source trees. Release and flagship adoption remain separate decisions.
+Current disposition: Productization, repository-coordinate updates, and portfolio consolidation are merged. The current product phase adds the Decision Workbench: an outcome-led matcher, three-candidate comparison, and bounded pilot planner that remains independent from the flagship. Release and flagship adoption remain separate decisions.
 
 ## Stabilize the productized default
 
@@ -34,6 +34,17 @@ Current hardening backlog:
 - A future company/flagship site may link to or replace this route, but this repository is the canonical public portfolio map until that migration is explicit.
 - The 1.88 MB social image is larger than necessary for a small static site.
 - License transition and content ownership need approval.
+
+## Decision Workbench
+
+- [x] Define eight concrete AI, automation, developer-tool, application, creative, and architecture use cases.
+- [x] Give every catalog project an explicit fit profile, smallest credible check, and adoption caveat.
+- [x] Rank goal and selected constraint matches without implying a quality or maturity score.
+- [x] Compare up to three candidates and generate a copyable evidence-oriented pilot plan.
+- [x] Encode the brief in a shareable URL without accounts, tracking, cookies, or browser storage.
+- [x] Provide structured public issue forms for reproducible pilot results and evidence-backed corrections.
+- [ ] Collect consented adoption evidence through shared URLs, repository issues, README links, and owner-visible GitHub traffic.
+- [ ] Add or change outcome profiles only when destination-owned evidence supports the change.
 
 ## Samsarix adoption
 

@@ -1,6 +1,6 @@
 # Samsarix Field Guide
 
-Samsarix Field Guide is a small, static navigator for the 30 public repositories stewarded by Samsarix LLC. It helps developers find a focused application, developer tool, library, service, research project, or earlier portal without presenting the portfolio as one installable platform.
+Samsarix Field Guide is a small, static navigator and decision workbench for the 30 public repositories stewarded by Samsarix LLC. It helps developers match a concrete AI or automation job to independently evaluable projects without presenting the portfolio as one installable platform.
 
 Some GitHub repository addresses still contain the former **Helix** brand because their rename or lifecycle decision is intentionally held. **Samsarix** is the current company and product-family brand. Every destination remains independently responsible for its installation, tests, releases, licensing, and documentation.
 
@@ -12,7 +12,7 @@ Some GitHub repository addresses still contain the former **Helix** brand becaus
 - Contributors deciding which public repository matches a specific job.
 - Maintainers who need one cautious, maintainable inventory instead of cross-repository marketing claims.
 
-The primary journey is simple: choose an outcome or search/filter the catalog, read the evidence boundary, and open one relevant repository.
+The primary journey is simple: choose an outcome and constraints, review a transparent shortlist, compare up to three projects, copy a bounded pilot plan, and open one relevant repository.
 
 ## Quick start
 
@@ -36,6 +36,10 @@ No runtime credentials, environment variables, databases, private repositories, 
 ## What the site does
 
 - Maps all 30 active public repositories visible on the owner's GitHub profile at the July 29, 2026 review.
+- Matches eight real-world outcomes and six operating constraints against an explicit, reviewed decision profile for every repository.
+- Compares up to three candidates without turning fit into an opaque maturity or quality score.
+- Generates a copyable three-step pilot plan with one concrete exercise and one limitation to verify.
+- Encodes a complete evaluation brief in the URL without accounts, analytics, cookies, or browser storage.
 - Preserves the useful architecture-evaluation and lifecycle guidance from the Project Guide and Hub Directory on one canonical, license-conscious boundaries page.
 - Shows current product labels alongside stable repository addresses.
 - Provides three high-signal starting routes.
@@ -44,6 +48,18 @@ No runtime credentials, environment variables, databases, private repositories, 
 - Uses a reviewed static snapshot instead of making GitHub API calls from a visitor's browser.
 
 Activity dates indicate public repository movement only. They do not certify maintenance, security, package availability, compatibility, licensing, or production readiness.
+
+## Decision Workbench
+
+Open <https://deathcharge.github.io/samsarix-field-guide/workbench.html> or select **Build an evaluation plan** from the home page.
+
+The ranking rule is intentionally small and inspectable:
+
+1. Include only projects whose reviewed profile names the selected outcome.
+2. Prefer projects matching more selected constraints.
+3. Use primary-versus-secondary outcome fit, featured status, and product name only as tie-breakers.
+
+The result is a fit shortlist, not a security, maintenance, or readiness score. The decision model lives in `docs/decision-model.js`; pure ranking, URL-state, comparison, and pilot-plan behavior live in `docs/workbench-core.js`.
 
 ## Development commands
 
@@ -54,6 +70,7 @@ npm test        # catalog behavior and local-server integration tests
 npm run build   # validate and copy the deployable site to dist/
 npm run check   # run the complete release check used by CI
 npm run audit:catalog # compare the snapshot with the live public GitHub inventory
+npm run audit:routes  # confirm every catalog destination returns a successful HTTP response
 ```
 
 There is no separate type-check command: the product uses standards-based HTML, CSS, and JavaScript without TypeScript or a compile step. JavaScript syntax is checked during `npm run lint`.
@@ -81,6 +98,10 @@ docs/styles.css       responsive visual system
 docs/catalog.js       reviewed repository records
 docs/catalog-core.js  pure search, filter, and sort behavior
 docs/app.js           accessible DOM rendering and URL state
+docs/decision-model.js reviewed outcomes, constraints, first checks, and caveats
+docs/workbench-core.js pure recommendation, comparison, sharing, and pilot behavior
+docs/workbench.html    outcome-led decision and evaluation experience
+docs/workbench.js      accessible workbench rendering and interactions
 scripts/              zero-dependency lint, build, and local server
 tests/                catalog and server integration coverage
 ```
@@ -115,6 +136,8 @@ This structure is intended to keep the public work reusable, credited, and prote
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the repository workflow and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) for community expectations. Product decisions and release evidence are recorded in [`docs/PRODUCTIZATION.md`](docs/PRODUCTIZATION.md).
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the repository workflow and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) for community expectations. Product decisions and release evidence are recorded in [`docs/PRODUCTIZATION.md`](docs/PRODUCTIZATION.md). Market evidence and the deliberately narrow product wedge are recorded in [`docs/COMPETITIVE_POSITIONING.md`](docs/COMPETITIVE_POSITIONING.md).
+
+Ran a bounded evaluation? [Share the public pilot evidence](https://github.com/Deathcharge/samsarix-field-guide/issues/new?template=pilot-result.yml). Found a stale fact or fit signal? [Propose an evidence-backed correction](https://github.com/Deathcharge/samsarix-field-guide/issues/new?template=catalog-correction.yml). Never include secrets, private source, personal data, or confidential information in an issue.
 
 Copyright © 2026 Samsarix LLC.
