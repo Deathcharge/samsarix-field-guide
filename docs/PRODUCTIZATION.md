@@ -4,6 +4,8 @@ Initial productization review: July 28, 2026
 
 Decision Workbench expansion review: August 8, 2026
 
+Release hardening review: August 11, 2026
+
 Company steward: Samsarix LLC
 
 Repository: `Deathcharge/samsarix-field-guide`
@@ -12,7 +14,7 @@ Canonical deployment: <https://deathcharge.github.io/samsarix-field-guide/>
 
 ## Release disposition
 
-**Production baseline.** The repository is a coherent standalone product: a dependency-free public portfolio guide plus an outcome-led Decision Workbench. The workbench turns user constraints into a transparent shortlist, comparison, and pilot plan without claiming to score project quality. Implementation, documentation, local and hosted validation, reviewed merges, deployment repair, and production smoke testing are complete for this expansion.
+**v1.0.0 production baseline.** The repository is a coherent standalone product: a dependency-free public portfolio guide plus an outcome-led Decision Workbench. The workbench turns user constraints into a transparent shortlist, comparison, and pilot plan without claiming to score project quality. Implementation, documentation, local and hosted validation, real-browser interaction testing, release metadata, reviewed merges, deployment repair, and production smoke testing are complete for this release.
 
 ## Evidence reviewed
 
@@ -20,7 +22,7 @@ The review covered:
 
 - every tracked file and recent commit in this repository;
 - the authenticated GitHub inventory for `Deathcharge`;
-- all 30 repositories publicly reachable from that profile on the review date;
+- all 31 repositories publicly reachable from that profile on the release review date;
 - the sibling Git checkouts available in the local parent workspace;
 - each available sibling's README heading, manifest, test directory, workflow count, license heading, branch, worktree state, and most recent local commit;
 - the configured GitHub Pages URL and this repository's remote/branch state; and
@@ -49,7 +51,7 @@ This avoids broken links, preserves provenance, and does not imply that every si
 
 ## Catalog decision
 
-The first productization pass used a representative 12-repository subset because evidence was incomplete. Owner confirmation, authenticated GitHub access, and local sibling checkouts now support a bounded 30-repository inventory.
+The first productization pass used a representative 12-repository subset because evidence was incomplete. Owner confirmation, authenticated GitHub access, and local sibling checkouts supported a bounded 30-repository inventory in July; the August 11 release refresh added the newly public Samsarix Portfolio Board for a current total of 31.
 
 The catalog is still a static reviewed snapshot rather than a visitor-side GitHub API integration. This keeps the primary journey private, deterministic, fast, rate-limit-free, and usable if another service is unavailable.
 
@@ -103,7 +105,7 @@ Current internal developer portals compete on organization-scale ingestion, owne
 
 The Field Guide's defensible wedge is earlier in the adoption journey: convert an unfamiliar public portfolio into a justified shortlist and bounded evaluation plan before a developer spends integration time. The market research and scope boundary are documented in `docs/COMPETITIVE_POSITIONING.md`.
 
-The Decision Workbench supports eight outcome families and six cross-cutting constraints. Every one of the 30 catalog entries has an explicit decision profile containing:
+The Decision Workbench supports eight outcome families and six cross-cutting constraints. Every one of the 31 catalog entries has an explicit decision profile containing:
 
 - one or more supported outcomes;
 - evidence-backed evaluation traits;
@@ -113,7 +115,7 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 ## Completed work
 
 - Rebuilt the marketing portal as a focused field guide.
-- Expanded the catalog from 12 representative routes to all 30 public repositories.
+- Expanded the catalog from 12 representative routes to all 31 public repositories.
 - Rebranded site identity, metadata, documentation, contacts, and legal ownership for Samsarix LLC.
 - Kept current product labels distinct from Helix-era repository addresses.
 - Added search, category filters, URL state, reset actions, accessible status announcements, and ordinary failure states.
@@ -122,7 +124,7 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 - Added working general, support, conduct, and private security contact paths.
 - Replaced the mismatched license with standard MPL-2.0 plus notice and trademark files.
 - Reworked the social preview for the Samsarix identity.
-- Added an eight-outcome Decision Workbench covering all 30 public repositories.
+- Added an eight-outcome Decision Workbench covering all 31 public repositories.
 - Added transparent constraint matching, a six-project shortlist, and a three-candidate comparison.
 - Added copyable share URLs and pilot plans without persistence or tracking.
 - Added one concrete first check and adoption caveat for every catalog project.
@@ -130,11 +132,14 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 - Added structured public issue forms for pilot results and evidence-backed catalog corrections.
 - Added a bounded live route audit for all catalog destinations.
 - Restored production publishing with a least-privilege GitHub Pages workflow pinned to immutable official-action revisions.
+- Verified the live catalog and Decision Workbench in a real Chromium browser at desktop and mobile widths, including URL persistence, filtering, reset, comparison limits, clipboard actions, and keyboard entry.
+- Added machine-readable citation metadata, a changelog, immutable CI action revisions, and weekly Dependabot action maintenance.
+- Corrected skip-link behavior so keyboard focus moves to the main content region.
 
 ## Release acceptance criteria
 
 - [x] Product identity, audience, and scope are explicit.
-- [x] All 30 public repositories are represented once.
+- [x] All 31 public repositories are represented once.
 - [x] Current product labels and literal repository addresses are both visible.
 - [x] A user can choose a route, search/filter, recover from zero results, and open a destination.
 - [x] The main page remains understandable without JavaScript.
@@ -150,6 +155,8 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 - [x] Public pilot reports require reproducible evidence and an explicit confidential-data check.
 - [x] The product and deployment repair pull requests are reviewed and merged.
 - [x] The published site, workbench modules, social asset, and custom 404 are smoke-tested after deployment.
+- [x] The live catalog and workbench interaction paths are browser-tested at desktop and mobile widths.
+- [x] Release history and machine-readable Samsarix LLC citation metadata are present.
 - [ ] Counsel reviews ownership and trademark policy before formal enforcement or commercial dual licensing.
 
 ## Known risks and deferred work
@@ -159,7 +166,7 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 - A bounded set of public URLs retain Helix-era names because their historical or consolidation decision is intentionally held. The catalog uses every completed Samsarix repository coordinate and keeps only those explicit holds.
 - GitHub Pages branch publishing cannot set every recommended HTTP response header.
 - Private flagship and company-site work can change without this public guide knowing.
-- Browser UI screenshot or assistive-technology lab testing was not requested; semantic structure, CSS behavior, pure catalog logic, and HTTP contracts are covered locally.
+- Real-browser keyboard, desktop, and mobile interaction testing is complete; a dedicated screen-reader lab remains future hardening.
 - Legal files improve clarity but cannot replace counsel's review of ownership, prior contributions, registrations, or jurisdiction-specific enforcement.
 - Decision profiles are curated evidence and can drift when destination repositories change.
 - No analytics means adoption learning depends on consented issue, discussion, README-link, and owner-visible GitHub traffic signals.
@@ -169,10 +176,11 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 | Check | Result |
 | --- | --- |
 | `npm ci` | Passed; one root package audited and zero vulnerabilities found. |
-| `npm run check` | Passed; 34 text files linted, the site, decision, issue-form, and deployment contracts validated, 9/9 tests passed, and `dist/` built. |
-| Catalog contract | Passed; all 30 active public repositories are represented by 30 unique records and decision profiles. |
-| Outbound route audit | Passed; `npm run audit:catalog` matched the live inventory and all 30 repository routes returned successful HTTP responses on August 8, 2026. |
+| `npm run check` | Passed; 37 text files linted, the site, decision, issue-form, and deployment contracts validated, 9/9 tests passed, and `dist/` built. |
+| Catalog contract | Passed; all 31 active public repositories are represented by 31 unique records and decision profiles. |
+| Outbound route audit | Passed; `npm run audit:catalog` matched the live inventory and all 31 repository routes returned successful HTTP responses on August 11, 2026. |
 | Social asset | Inspected at 1731×909; approved text is “SAMSARIX DECISION WORKBENCH” and “Decide. Compare. Pilot.” |
 | GitHub-hosted CI | Passed on product PR #5 at `45b1455`, merged main at `3154bd2`, deployment repair PR #6 at `087d34c`, and published main at `efa776a`. |
 | Production Pages smoke test | Passed at `efa776a`: current home, workbench HTML, browser module, and decision model returned HTTP 200; the custom not-found route returned HTTP 404. |
 | Published social asset | Passed; HTTP 200 `image/png`, 1,842,467 bytes, with repository and production SHA-256 `f5df203ebb38ce348816d075cf3a23de81cbdece8ce415ba5ba50ac105cba1e5`. |
+| Real-browser acceptance | Passed in Chromium on August 11, 2026 at 1440×900 and 390×844: catalog search/filter and URL persistence, workbench ranking/constraints/reset, bounded comparison, clipboard actions, shared state reload, responsive layout, skip navigation, and zero console errors. |

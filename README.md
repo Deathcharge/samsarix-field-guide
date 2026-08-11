@@ -1,10 +1,12 @@
 # Samsarix Field Guide
 
-Samsarix Field Guide is a small, static navigator and decision workbench for the 30 public repositories stewarded by Samsarix LLC. It helps developers match a concrete AI or automation job to independently evaluable projects without presenting the portfolio as one installable platform.
+Samsarix Field Guide is a small, static navigator and decision workbench for the 31 public repositories stewarded by Samsarix LLC. It helps developers match a concrete AI or automation job to independently evaluable projects without presenting the portfolio as one installable platform.
 
 Some GitHub repository addresses still contain the former **Helix** brand because their rename or lifecycle decision is intentionally held. **Samsarix** is the current company and product-family brand. Every destination remains independently responsible for its installation, tests, releases, licensing, and documentation.
 
 **Current maturity:** production baseline. The Decision Workbench, catalog, tests, build, live audits, license, support paths, and least-privilege Pages deployment are merged and published. Destination projects still own every installation, release, security, compatibility, and readiness claim.
+
+**Current release:** [v1.0.0](https://github.com/Deathcharge/samsarix-field-guide/releases/tag/v1.0.0). See the [changelog](CHANGELOG.md) for the release contents and [`CITATION.cff`](CITATION.cff) for machine-readable credit metadata.
 
 ## Who it is for
 
@@ -35,7 +37,7 @@ No runtime credentials, environment variables, databases, private repositories, 
 
 ## What the site does
 
-- Maps all 30 active public repositories visible on the owner's GitHub profile at the July 29, 2026 review.
+- Maps all 31 active public repositories visible on the owner's GitHub profile at the August 11, 2026 review.
 - Matches eight real-world outcomes and six operating constraints against an explicit, reviewed decision profile for every repository.
 - Compares up to three candidates without turning fit into an opaque maturity or quality score.
 - Generates a copyable three-step pilot plan with one concrete exercise and one limitation to verify.
@@ -114,7 +116,7 @@ The least-privilege `.github/workflows/pages.yml` workflow publishes `docs/` aft
 
 <https://deathcharge.github.io/samsarix-field-guide/>
 
-The workflow uses GitHub's Pages OIDC deployment path and immutable official-action revisions; it requires no repository-owned deployment secret. CI remains a separate gate. After a merge, verify the page, workbench, social image, and representative outbound links.
+The workflow uses GitHub's Pages OIDC deployment path and immutable official-action revisions; it requires no repository-owned deployment secret. CI remains a separate gate, pins its actions to immutable revisions, and Dependabot checks both workflows weekly. After a merge, verify the page, workbench, social image, and representative outbound links.
 
 ## Security and privacy
 
@@ -128,7 +130,7 @@ See [`SECURITY.md`](SECURITY.md) for private vulnerability reporting. General in
 
 ## Licensing and brand
 
-The source and site content in this repository are licensed under the [Mozilla Public License 2.0](LICENSE), with copyright and attribution recorded in [`NOTICE`](NOTICE). MPL-2.0 uses file-level copyleft: distributed modifications to covered files remain available under the same license, while larger works may use other terms.
+The source and site content in this repository are licensed under the [Mozilla Public License 2.0](LICENSE), with copyright and attribution recorded in [`NOTICE`](NOTICE). MPL-2.0 uses file-level copyleft: distributed modifications to covered files remain available under the same license, while larger works may use other terms. GitHub also exposes the project's machine-readable citation metadata from [`CITATION.cff`](CITATION.cff).
 
 The license does not grant rights to Samsarix names, logos, or branding. See [`TRADEMARKS.md`](TRADEMARKS.md) for the separate brand policy. Linked repositories retain their own license terms.
 

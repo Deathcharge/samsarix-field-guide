@@ -1,5 +1,5 @@
 export const CATALOG_META = Object.freeze({
-  reviewedOn: "2026-07-29",
+  reviewedOn: "2026-08-11",
   sourceUrl: "https://github.com/Deathcharge?tab=repositories",
   owner: "Deathcharge",
   steward: "Samsarix LLC",
@@ -49,6 +49,18 @@ export const PROJECTS = Object.freeze([
     useCase: "Review this project when you want an editor-native AI workflow without a Samsarix account, hosted API, or background repository indexing.",
     lastActivity: "2026-07-29",
     featured: true,
+  },
+  {
+    id: "samsarix-portfolio-board",
+    name: "samsarix-portfolio-board",
+    productName: "Samsarix Portfolio Board",
+    repoUrl: "https://github.com/Deathcharge/samsarix-portfolio-board",
+    category: "application",
+    language: "JavaScript",
+    summary: "A read-only, self-hosted dashboard that turns live public GitHub metadata into explicit activity and repository-standard signals.",
+    useCase: "Inspect it when a solo maintainer or small team needs a portfolio operations view without adopting a full developer portal.",
+    lastActivity: "2026-08-11",
+    featured: false,
   },
   {
     id: "agent-consensus",

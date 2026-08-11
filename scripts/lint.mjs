@@ -6,7 +6,7 @@ import { verifyRepository } from "./verify.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SKIP_DIRECTORIES = new Set([".git", "dist", "node_modules"]);
-const TEXT_EXTENSIONS = new Set([".css", ".html", ".js", ".json", ".md", ".mjs", ".txt", ".yml", ".yaml"]);
+const TEXT_EXTENSIONS = new Set([".cff", ".css", ".html", ".js", ".json", ".md", ".mjs", ".txt", ".yml", ".yaml"]);
 const JAVASCRIPT_EXTENSIONS = new Set([".js", ".mjs"]);
 
 async function walk(directory) {

@@ -14,7 +14,7 @@ Current disposition: The Decision Workbench production baseline is merged and pu
 - Keep the default branch buildable from a clean checkout and preserve exact-head CI evidence.
 - Keep Samsarix LLC branding, package identity, license metadata, and compatibility aliases internally consistent.
 - Preserve the pre-productization default under a rollback ref before merging; do not delete legacy history.
-- Review priority: Keep all 30 catalog rows aligned with the live public inventory through `npm run audit:catalog`.
+- Review priority: Keep all 31 catalog rows aligned with the live public inventory through `npm run audit:catalog`.
 - Review priority: approve brand/MPL.
 - Review priority: green CI.
 - Review priority: merge.
@@ -23,17 +23,17 @@ Current disposition: The Decision Workbench production baseline is merged and pu
 ## Production baseline and next hardening
 
 - Bind generated content and links to an explicit flagship release or API version.
-- Test navigation, accessibility, deployment, and stale-content behavior.
+- Keep navigation, accessibility, deployment, and stale-content behavior covered as the catalog evolves.
 - Assign a freshness owner or consolidate the content into the flagship.
 
 Current hardening backlog:
 
 - Catalog descriptions and activity remain a dated snapshot even though repository-name drift now has a live read-only audit command.
 - No automated content-maturity or outbound-service health certification; those remain destination-owned checks.
-- Production HTML, JavaScript, decision data, social asset, and custom 404 were smoke-tested; browser interaction and assistive-technology lab testing remain future hardening.
+- Production HTML, JavaScript, decision data, social asset, and custom 404 were smoke-tested; desktop/mobile browser interaction and keyboard navigation now pass, while a dedicated assistive-technology lab remains future hardening.
 - A future company/flagship site may link to or replace this route, but this repository is the canonical public portfolio map until that migration is explicit.
 - The 1.88 MB social image is larger than necessary for a small static site.
-- License transition and content ownership need approval.
+- Counsel review of historical content ownership and trademark enforcement remains advisable.
 
 ## Decision Workbench
 
