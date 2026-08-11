@@ -94,7 +94,7 @@ This is a practical repository default, not legal advice. Counsel should review 
 2. **Data separated from rendering.** `catalog.js` holds facts, `catalog-core.js` holds pure behavior, and `app.js` renders with safe DOM APIs.
 3. **No visitor-side API calls.** The catalog is deterministic and sends no background requests.
 4. **GitHub Pages `docs/` retained.** This preserves the known deployment shape and canonical URL.
-5. **Repository-owned quality gate.** One zero-dependency command checks formatting, syntax, schema, behavior, HTTP handling, and build output.
+5. **Repository-owned quality gate.** One lockfile-backed command checks formatting, syntax, citation schema, behavior, HTTP handling, and build output.
 6. **Each destination stands alone.** No sibling source is copied or required at runtime.
 7. **Fit signals over aggregate scores.** The workbench ranks declared outcome and constraint matches, never security, health, or maturity.
 8. **Portable state without persistence.** Outcome, constraints, and comparison IDs live in the URL; there is no account, cookie, analytics, or browser storage.
@@ -175,7 +175,7 @@ The Decision Workbench supports eight outcome families and six cross-cutting con
 
 | Check | Result |
 | --- | --- |
-| `npm ci` | Passed; one root package audited and zero vulnerabilities found. |
+| `npm ci` | Passed; 20 release-tool packages audited and zero vulnerabilities found. |
 | `npm run check` | Passed; 37 text files linted, the site, decision, issue-form, and deployment contracts validated, 9/9 tests passed, and `dist/` built. |
 | Catalog contract | Passed; all 31 active public repositories are represented by 31 unique records and decision profiles. |
 | Outbound route audit | Passed; `npm run audit:catalog` matched the live inventory and all 31 repository routes returned successful HTTP responses on August 11, 2026. |

@@ -37,7 +37,7 @@ No runtime credentials, environment variables, databases, private repositories, 
 
 ## What the site does
 
-- Maps all 31 active public repositories visible on the owner's GitHub profile at the August 11, 2026 review.
+- Maps all 31 active public repositories visible on the owner's GitHub profile at the August 11, 2026, review.
 - Matches eight real-world outcomes and six operating constraints against an explicit, reviewed decision profile for every repository.
 - Compares up to three candidates without turning fit into an opaque maturity or quality score.
 - Generates a copyable three-step pilot plan with one concrete exercise and one limitation to verify.
@@ -104,7 +104,7 @@ docs/decision-model.js reviewed outcomes, constraints, first checks, and caveats
 docs/workbench-core.js pure recommendation, comparison, sharing, and pilot behavior
 docs/workbench.html    outcome-led decision and evaluation experience
 docs/workbench.js      accessible workbench rendering and interactions
-scripts/              zero-dependency lint, build, and local server
+scripts/              release lint, schema checks, build, and local server
 tests/                catalog and server integration coverage
 ```
 

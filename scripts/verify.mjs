@@ -1,6 +1,7 @@
 import { access, readFile, stat } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateCFFFile } from "cffjs";
 import { CATEGORIES, PROJECTS } from "../docs/catalog.js";
 import { CONSTRAINTS, OUTCOMES, PROJECT_PROFILES } from "../docs/decision-model.js";
 
@@ -42,8 +43,6 @@ const REQUIRED_ROOT_FILES = [
 ];
 
 const REQUIRED_HTML_MARKERS = [
-  'id="main-content"',
-  'tabindex="-1"',
   'id="catalog-search"',
   'id="project-grid"',
   'role="status"',
@@ -58,8 +57,6 @@ const REQUIRED_HTML_MARKERS = [
 ];
 
 const REQUIRED_WORKBENCH_MARKERS = [
-  'id="main-content"',
-  'tabindex="-1"',
   'id="decision-form"',
   'name="outcome"',
   'name="constraint"',
@@ -85,6 +82,14 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function assertFocusableMain(source, pageName) {
+  const mainTag = source.match(/<main\b[^>]*>/i)?.[0] ?? "";
+  assert(
+    mainTag.includes('id="main-content"') && mainTag.includes('tabindex="-1"'),
+    `${pageName} must make #main-content focusable.`,
+  );
+}
+
 export async function verifyRepository() {
   for (const file of REQUIRED_FILES) {
     await access(resolve(DOCS, file));
@@ -94,18 +99,19 @@ export async function verifyRepository() {
   }
 
   const html = await readFile(resolve(DOCS, "index.html"), "utf8");
+  assertFocusableMain(html, "index.html");
   for (const marker of REQUIRED_HTML_MARKERS) {
     assert(html.includes(marker), `index.html is missing required marker: ${marker}`);
   }
 
   const workbenchHtml = await readFile(resolve(DOCS, "workbench.html"), "utf8");
+  assertFocusableMain(workbenchHtml, "workbench.html");
   for (const marker of REQUIRED_WORKBENCH_MARKERS) {
     assert(workbenchHtml.includes(marker), `workbench.html is missing required marker: ${marker}`);
   }
 
   const boundariesHtml = await readFile(resolve(DOCS, "portfolio-boundaries.html"), "utf8");
-  assert(boundariesHtml.includes('id="main-content"'), "Portfolio boundaries is missing its main-content target.");
-  assert(boundariesHtml.includes('tabindex="-1"'), "Portfolio boundaries must move focus after its skip link is used.");
+  assertFocusableMain(boundariesHtml, "portfolio-boundaries.html");
   for (const claim of FORBIDDEN_CLAIMS) {
     assert(!html.toLocaleLowerCase("en-US").includes(claim.toLocaleLowerCase("en-US")), `index.html contains retired claim: ${claim}`);
   }
@@ -141,6 +147,7 @@ export async function verifyRepository() {
   assert(notice.includes("contact@samsarix.com") && notice.includes("support@samsarix.com"), "NOTICE is missing a working contact path.");
 
   const citation = await readFile(resolve(ROOT, "CITATION.cff"), "utf8");
+  validateCFFFile(resolve(ROOT, "CITATION.cff"));
   for (const marker of ["cff-version: 1.2.0", 'version: "1.0.0"', 'name: "Samsarix LLC"', "license: MPL-2.0"]) {
     assert(citation.includes(marker), `CITATION.cff is missing required metadata: ${marker}`);
   }
