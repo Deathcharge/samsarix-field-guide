@@ -1,6 +1,7 @@
 import { access, readFile, stat } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateCFFFile } from "cffjs";
 import { CATEGORIES, PROJECTS } from "../docs/catalog.js";
 import { CONSTRAINTS, OUTCOMES, PROJECT_PROFILES } from "../docs/decision-model.js";
 
@@ -17,18 +18,24 @@ const REQUIRED_FILES = [
   "decision-model.js",
   "styles.css",
   "og.png",
+  "portfolio-boundaries.html",
   "workbench-og.png",
   "workbench-core.js",
   "workbench.html",
   "workbench.js",
+  "favicon.svg",
   "robots.txt",
 ];
 
 const REQUIRED_ROOT_FILES = [
+  ".github/dependabot.yml",
   ".github/ISSUE_TEMPLATE/catalog-correction.yml",
   ".github/ISSUE_TEMPLATE/config.yml",
   ".github/ISSUE_TEMPLATE/pilot-result.yml",
+  ".github/workflows/ci.yml",
   ".github/workflows/pages.yml",
+  "CHANGELOG.md",
+  "CITATION.cff",
   "LICENSE",
   "NOTICE",
   "SECURITY.md",
@@ -36,7 +43,6 @@ const REQUIRED_ROOT_FILES = [
 ];
 
 const REQUIRED_HTML_MARKERS = [
-  'id="main-content"',
   'id="catalog-search"',
   'id="project-grid"',
   'role="status"',
@@ -76,6 +82,14 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function assertFocusableMain(source, pageName) {
+  const mainTag = source.match(/<main\b[^>]*>/i)?.[0] ?? "";
+  assert(
+    mainTag.includes('id="main-content"') && mainTag.includes('tabindex="-1"'),
+    `${pageName} must make #main-content focusable.`,
+  );
+}
+
 export async function verifyRepository() {
   for (const file of REQUIRED_FILES) {
     await access(resolve(DOCS, file));
@@ -85,14 +99,19 @@ export async function verifyRepository() {
   }
 
   const html = await readFile(resolve(DOCS, "index.html"), "utf8");
+  assertFocusableMain(html, "index.html");
   for (const marker of REQUIRED_HTML_MARKERS) {
     assert(html.includes(marker), `index.html is missing required marker: ${marker}`);
   }
 
   const workbenchHtml = await readFile(resolve(DOCS, "workbench.html"), "utf8");
+  assertFocusableMain(workbenchHtml, "workbench.html");
   for (const marker of REQUIRED_WORKBENCH_MARKERS) {
     assert(workbenchHtml.includes(marker), `workbench.html is missing required marker: ${marker}`);
   }
+
+  const boundariesHtml = await readFile(resolve(DOCS, "portfolio-boundaries.html"), "utf8");
+  assertFocusableMain(boundariesHtml, "portfolio-boundaries.html");
   for (const claim of FORBIDDEN_CLAIMS) {
     assert(!html.toLocaleLowerCase("en-US").includes(claim.toLocaleLowerCase("en-US")), `index.html contains retired claim: ${claim}`);
   }
@@ -127,7 +146,24 @@ export async function verifyRepository() {
   assert(notice.includes("Copyright © 2026 Samsarix LLC"), "NOTICE is missing the Samsarix LLC copyright.");
   assert(notice.includes("contact@samsarix.com") && notice.includes("support@samsarix.com"), "NOTICE is missing a working contact path.");
 
-  assert(PROJECTS.length === 30, "The catalog must contain all 30 reviewed public repositories.");
+  const citation = await readFile(resolve(ROOT, "CITATION.cff"), "utf8");
+  validateCFFFile(resolve(ROOT, "CITATION.cff"));
+  for (const marker of ["cff-version: 1.2.0", 'version: "1.0.0"', 'name: "Samsarix LLC"', "license: MPL-2.0"]) {
+    assert(citation.includes(marker), `CITATION.cff is missing required metadata: ${marker}`);
+  }
+
+  const dependabot = await readFile(resolve(ROOT, ".github/dependabot.yml"), "utf8");
+  assert(dependabot.includes('package-ecosystem: "github-actions"'), "Dependabot must monitor GitHub Actions.");
+  assert(dependabot.includes('interval: "weekly"'), "Dependabot must check action revisions weekly.");
+
+  for (const workflow of [".github/workflows/ci.yml", ".github/workflows/pages.yml"]) {
+    const workflowSource = await readFile(resolve(ROOT, workflow), "utf8");
+    const actionRefs = [...workflowSource.matchAll(/uses:\s+[^@\s]+@([^\s#]+)/g)].map((match) => match[1]);
+    assert(actionRefs.length > 0, `${workflow} must use at least one action.`);
+    assert(actionRefs.every((reference) => /^[0-9a-f]{40}$/.test(reference)), `${workflow} must pin every action to a full commit SHA.`);
+  }
+
+  assert(PROJECTS.length === 31, "The catalog must contain all 31 reviewed public repositories.");
   assert(OUTCOMES.length === 8, "The Decision Workbench must expose eight outcome-led use cases.");
   assert(CONSTRAINTS.length === 6, "The Decision Workbench must expose six explicit constraints.");
   assert(Object.keys(PROJECT_PROFILES).length === PROJECTS.length, "Every catalog project must have one decision profile.");

@@ -69,6 +69,12 @@ const profiles = {
     firstCheck: "Attach one disposable file, request a single edit through local Ollama, and confirm that the native diff blocks writes until approval.",
     watchFor: "The project deliberately avoids repository indexing, terminal autonomy, and multi-file agents; verify that narrow scope fits the job.",
   },
+  "samsarix-portfolio-board": {
+    outcomes: ["understand-portfolio", "improve-developer-workflow"],
+    traits: ["no-key", "local-first", "visual"],
+    firstCheck: "Run the default public-account view without a token and compare its activity and repository-standard signals with GitHub.",
+    watchFor: "The dashboard depends on live GitHub data and per-process caches; it does not provide private-repository access, durable history, or write actions.",
+  },
   "agent-consensus": {
     outcomes: ["evaluate-multi-agent", "build-agent-workflows"],
     traits: ["no-key", "local-first", "deterministic", "python", "embeddable"],

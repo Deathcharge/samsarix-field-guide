@@ -39,6 +39,7 @@ const EXPECTED_PUBLIC_REPOSITORIES = [
   "samsarix-narrative-engine",
   "samsarix-notifications",
   "samsarix-page-lens",
+  "samsarix-portfolio-board",
   "samsarix-spirals",
   "samsarix-story-studio",
   "samsarix-token-cost-manager",
@@ -50,7 +51,7 @@ const EXPECTED_PUBLIC_REPOSITORIES = [
 
 test("catalog entries have unique IDs and supported categories", () => {
   assert.equal(new Set(PROJECTS.map(({ id }) => id)).size, PROJECTS.length);
-  assert.equal(PROJECTS.length, 30);
+  assert.equal(PROJECTS.length, 31);
   for (const project of PROJECTS) {
     assert.ok(Object.hasOwn(CATEGORIES, project.category));
     assert.match(project.repoUrl, /^https:\/\/github\.com\/Deathcharge\//);
